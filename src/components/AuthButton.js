@@ -6,7 +6,7 @@ import { doc, setDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 
-export default function AuthButton() {
+export default function AuthButton({buttonText = "Sign in with Google"}) {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function AuthButton() {
           Logout ({user.displayName})
         </button>
       ) : (
-        <button className="btn" onClick={handleLogin}>Sign in with Google <Image src = "/google_logo.png" alt="G-Logo" width={20} height={20}></Image></button>
+        <button className={buttonText === "Sign in with Google" ? "btn" : "get-started-button"} onClick={handleLogin}>{buttonText}{buttonText === "Sign in with Google" ? <Image src = "/google_logo.png" alt="G-Logo" width={20} height={20}></Image> : null}</button>
       )}
     </div>
   );
