@@ -62,6 +62,7 @@ html, body {
   background-color: rgb(255, 219, 147);
   color: black;
   font-weight: bold;
+  transition: 0.2s;
 }
 
 @media (max-width: 768px) {
@@ -120,11 +121,11 @@ Image{
   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
-
 }
 
 .homepage-cards-container{
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
   justify-content: center;
   gap: 2em;
   padding: 2em;
@@ -147,7 +148,7 @@ Image{
   color: white; 
   border: none; 
   padding: 10px 20px; 
-  border-radius: 5px; 
+  border-radius: 10px; 
   cursor: pointer; 
   font-size: 1.2em; 
 } 
@@ -184,6 +185,22 @@ Image{
   overflow-y: hidden;
   scroll-behavior: smooth;
   flex-wrap: nowrap;
+  scrollbar-width: none;
+}
+
+.profiles-scroller{
+  display: flex;
+  gap: 2em;
+  animation: scrollCards 10s linear infinite;
+}
+
+@keyframes scrollCards {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%); 
+  }
 }
 
 @media (max-width: 2500px) {
@@ -200,7 +217,14 @@ Image{
   margin-bottom: 10px;
 }
 
-
+.stats{
+  display: flex;
+  justify-content: space-around;
+  padding: 3em;
+  font-size: xx-large;
+  background-color: #004aad;
+  color: #efe52f;
+}
 
 /* Button styling */
 .btn {
