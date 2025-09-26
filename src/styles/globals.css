@@ -181,7 +181,7 @@ Image{
   justify-content: center;
   gap: 2em;
   padding: 2em;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: hidden;
   scroll-behavior: smooth;
   flex-wrap: nowrap;
@@ -219,14 +219,107 @@ Image{
 
 .stats{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 3em;
   font-size: xx-large;
-  background-color: #004aad;
-  color: #efe52f;
+  background-color: #041831;
+  color: #56cfee;
 }
 
+
+.stats-item{
+  width: 20%;
+  background-color: #081722;
+  text-align: center;
+  border-radius: 20px;
+  padding: 0.5em;
+  box-shadow: #2f95ef 5px 5px 5px;
+  animation: rotate-shadow 1s linear infinite;
+}
+
+@keyframes rotate-shadow {
+  0% {
+    box-shadow: 5px 5px 10px #2f95ef;
+  }
+  25% {
+    box-shadow: 5px -5px 10px #2f95ef;
+  }
+  50% {
+    box-shadow: -5px -5px 10px #2f95ef;
+  }
+  75% {
+    box-shadow: -5px 5px 10px #2f95ef;
+  }
+  100% {
+    box-shadow: 5px 5px 10px #2f95ef;
+  }
+}
+
+
+@media screen and (max-width: 600px) {
+  .stats{
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+    padding: 1em;
+    font-size: x-large;
+  }
+
+  .stats-item{
+    width: 80%;
+  }
+}
+
+
+@media screen and (min-width: 601px) and (max-width: 1024px) {
+  .stats{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: 1em;
+    padding: 1em;
+  }
+
+  .stats-item{
+    width: 80%;
+    font-size: 30px;
+  }
+}
+
+.footer-cta{
+  
+  text-align: center;
+  padding: 4em 2em;
+  background: #f0f4f8;
+}
+
+.footer-cta h1 {
+  display: flex;            /* Keep flex properties for responsiveness */
+  justify-content: center;  /* optional, adjust as needed */          /* allow text to wrap on smaller screens */
+}
 /* Button styling */
+
+.footer-cta-btn{
+  background: #004aad;
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  transition: background 0.3s;
+  transition: transform 0.2s, box-shadow 0.3s, background 0.3s;
+  position: relative;
+  z-index: 1;
+}
+
+.footer-cta-btn:hover {
+  transform: scale(1.1); 
+  background: #0060e0;
+  box-shadow: 0 0 20px rgba(0, 74, 173, 0.6), 0 0 40px rgba(0, 74, 173, 0.4);
+}
+
 .btn {
   background: white;
   color: #004aad;

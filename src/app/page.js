@@ -1,16 +1,20 @@
 "use client"; 
 import Image from "next/image";
 import HomePageCard from "@/components/HomePageCard";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import ProfileCard from "@/components/ProfileCard";
 import AuthButton from "@/components/AuthButton";
 import cards from "@/data/topFeaturesHomeCard";
-import { useRef } from "react";
 
 export default function HomePage() {
   const [profiles, setProfiles] = useState([]);
-  const careerRef = useRef(null);     
-  const statsRef = useRef(null);      
+  const [careerCount, setCareerCount] = useState(0);
+  const [successRateCount, setSuccessRateCount] = useState(0);
+  const [jobOpportunitiesCount, setJobOpportunitieCount] = useState(0);
+  const [scholarshipsCount, setScholarshipsCount] = useState(0);
+  const footerText = "Ready to Transform Your Career?";
+  const [footerCtaText, setFooterCtaText] = useState("");
+  const statsRef = useRef(null);       
   const counterStarted = useRef(false);
 
   useEffect(() => {
@@ -30,15 +34,25 @@ export default function HomePage() {
       if (rect.top <= windowHeight - 100) {
         counterStarted.current = true;
 
-        let count = 0;
-        const end = 250;
-        setTimeout(() => {
-          const interval = setInterval(() => {
-          count++;
-          if (careerRef.current) careerRef.current.textContent = count + "+";
-          if (count >= end) clearInterval(interval);
-        }, 10);
-        }, 500);
+        const duration = 2000;
+        const steps = 100;
+        const intervalTime = duration / steps;
+
+        let currentStep = 0;
+
+        const interval = setInterval(() => {
+          currentStep++;
+
+          setCareerCount(Math.ceil((250 / steps) * currentStep));
+          setSuccessRateCount(Math.ceil((95 / steps) * currentStep));
+          setJobOpportunitieCount(Math.ceil((500 / steps) * currentStep));
+          setScholarshipsCount(Math.ceil((100 / steps) * currentStep));
+
+          if (currentStep >= steps){
+            counterStarted.current = false;
+            clearInterval(interval);
+          }
+        }, intervalTime);
       }
     };
 
@@ -46,6 +60,19 @@ export default function HomePage() {
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+
+  useEffect(() => {
+    let index = 0;
+    const interval = setInterval(() => {
+      setFooterCtaText(footerText.slice(0, index + 1));
+      index += 1;
+      if (index === footerText.length){
+        clearInterval(interval);
+      }
+    }, 90);
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -67,6 +94,29 @@ export default function HomePage() {
         }
       </div>
 
+      <div className="stats" ref={statsRef}>
+        <div className="stats-item">
+          <h3>{careerCount} +</h3>
+          <p>Careers Explored</p>
+        </div>
+
+        <div className="stats-item">
+          <h3>{successRateCount} +</h3>
+          <p>Success Rate</p>
+        </div>
+
+        <div className="stats-item">
+          <h3>{jobOpportunitiesCount} +</h3>
+          <p>Job Opportunities</p>
+        </div>
+
+        <div className="stats-item">
+          <h3>{scholarshipsCount} +</h3>
+          <p>Scholarships</p>
+        </div>
+
+      </div>
+
       <div className="top-profiles-container">
         <h2 className="section-title" style={{marginLeft: "2rem"}}>Our Top Successor</h2>
         <div className="profiles-list">
@@ -85,27 +135,12 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="stats" ref={statsRef}>
-        <div>
-          <h3 ref={careerRef}>0+</h3>
-          <p>Careers Explored</p>
-        </div>
-
-        <div>
-          <h3>95+</h3>
-          <p>Success Rate</p>
-        </div>
-
-        <div>
-          <h3>500+</h3>
-          <p>Job Opportunities</p>
-        </div>
-
-        <div>
-          <h3>100+</h3>
-          <p>Scholarships</p>
-        </div>
-
+      <div className="footer-cta">
+        <h1>
+          {footerCtaText}
+        </h1>
+        <p>Join thousands of professionals who have found their perfect career path with CareerNavigator.</p>
+        <AuthButton buttonText="Get Started Free"/>
       </div>
     </div>
   );
