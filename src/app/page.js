@@ -16,6 +16,7 @@ export default function HomePage() {
   const [footerCtaText, setFooterCtaText] = useState("");
   const statsRef = useRef(null);       
   const counterStarted = useRef(false);
+  const footerRef = useRef(null);
 
   useEffect(() => {
     fetch('/api/profiles')
@@ -49,7 +50,6 @@ export default function HomePage() {
           setScholarshipsCount(Math.ceil((100 / steps) * currentStep));
 
           if (currentStep >= steps){
-            counterStarted.current = false;
             clearInterval(interval);
           }
         }, intervalTime);
@@ -62,17 +62,36 @@ export default function HomePage() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
   useEffect(() => {
+    let interval;
     let index = 0;
-    const interval = setInterval(() => {
-      setFooterCtaText(footerText.slice(0, index + 1));
-      index += 1;
-      if (index === footerText.length){
-        clearInterval(interval);
+
+    const handleScroll = () => {
+      if (!footerRef.current) return;
+
+      const rect = footerRef.current.getBoundingClientRect();
+      const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+
+      if (rect.top <= windowHeight - 50) {
+        window.removeEventListener("scroll", handleScroll);
+
+        interval = setInterval(() => {
+          setFooterCtaText(footerText.slice(0, index + 1));
+          index += 1;
+          if (index === footerText.length) {
+            clearInterval(interval);
+          }
+        }, 90);
       }
-    }, 90);
-    return () => clearInterval(interval);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      clearInterval(interval);
+    };
   }, []);
 
   return (
@@ -135,7 +154,7 @@ export default function HomePage() {
         </div>
       </div>
 
-      <div className="footer-cta">
+      <div className="footer-cta" ref={footerRef}>
         <h1>
           {footerCtaText}
         </h1>
