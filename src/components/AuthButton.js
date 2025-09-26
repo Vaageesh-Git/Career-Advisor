@@ -48,7 +48,7 @@ export default function AuthButton({buttonText = "Sign in with Google"}) {
           Logout ({user.displayName})
         </button>
       ) : (
-        <button className={buttonText === "Sign in with Google" ? "btn" : "get-started-button"} onClick={handleLogin}>{buttonText}{buttonText === "Sign in with Google" ? <Image src = "/google_logo.png" alt="G-Logo" width={20} height={20}></Image> : null}</button>
+        <button className={buttonText === "Sign in with Google" ? "btn" : buttonText === "Get Started Free" ? "footer-cta-btn" : "get-started-button"} onClick={handleLogin}>{buttonText}{buttonText === "Sign in with Google" ? <Image src = "/google_logo.png" alt="G-Logo" width={20} height={20}></Image> : null}</button>
       )}
     </div>
   );
