@@ -5,13 +5,18 @@ import { signInWithPopup, signOut } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function AuthButton({buttonText = "Sign in with Google"}) {
   const [user, setUser] = useState(null);
+  const router = useRouter();
 
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((currentUser) => {
       setUser(currentUser);
+      if (currentUser){
+        router.push("/dashboard");
+      }
     });
     return () => unsubscribe();
   }, []);
@@ -21,7 +26,6 @@ export default function AuthButton({buttonText = "Sign in with Google"}) {
       const result = await signInWithPopup(auth, googleProvider);
       const loggedInUser = result.user;
 
-      // Save user in Firestore
       await setDoc(doc(db, "users", loggedInUser.uid), {
         name: loggedInUser.displayName,
         email: loggedInUser.email,
@@ -36,6 +40,8 @@ export default function AuthButton({buttonText = "Sign in with Google"}) {
   const handleLogout = async () => {
     try {
       await signOut(auth);
+      document.cookie = "session=; path=/; max-age=0";
+      router.push("/");
     } catch (error) {
       console.error("Logout failed:", error.message);
     }
