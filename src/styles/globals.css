@@ -191,7 +191,7 @@ Image{
 .profiles-scroller{
   display: flex;
   gap: 2em;
-  animation: scrollCards 10s linear infinite;
+  animation: scrollCards 10s linear infinite alternate;
 }
 
 @keyframes scrollCards {
