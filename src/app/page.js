@@ -103,14 +103,14 @@ export default function HomePage() {
         <AuthButton buttonText="Get Started"/>
       </div>
       <div className="homepage-cards-container">
-        {cards.map((i)=>
-          <HomePageCard
-            key={i}
-            title={i.title}
-            description={i.description}
-            imageSrc={i.imageSrc}
-          />)
-        }
+          {cards.map((i)=>
+            <HomePageCard
+              key={i}
+              title={i.title}
+              description={i.description}
+              imageSrc={i.imageSrc}
+            />)
+          }
       </div>
 
       <div className="stats" ref={statsRef}>
