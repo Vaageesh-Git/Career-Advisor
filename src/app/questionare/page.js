@@ -4,7 +4,10 @@ import { questionsOptions } from "../../data/questions";
 
 export default function Questionare() {
   const [questionNumber, setQuestionNumber] = useState(0);
-
+  const [answers, setAnswers] = useState({}); // { 0: "Option A", 1: "Option B" }
+  const handleOptionChange = (option) => {
+    setAnswers({ ...answers, [questionNumber]: option });
+  };
   const handleNext = () => {
     if (questionNumber < questionsOptions.length - 1) {
       setQuestionNumber(questionNumber + 1);
@@ -18,8 +21,9 @@ export default function Questionare() {
   };
 
   return (
-    <div>
-      <form>
+    <div className="main-form">
+      <h1>Your Journey Starts Here - Share a Bit About Yourself</h1>
+      <form className="questions-form">
         <div className="questionare-container">
           <h2 className="questionare-heading">Question {questionNumber + 1}</h2>
           <div className="options-container">
@@ -30,13 +34,14 @@ export default function Questionare() {
                   <h1>{quesObj.question}</h1>
                   {quesObj.options.map((option, idx) => (
                     <div key={idx} className="option-item">
-                      <input
-                        type="radio"
-                        id={`option-${questionNumber}-${idx}`}
-                        name={`question-${questionNumber}`}
-                        value={option}
-                      />
-                      <label htmlFor={`option-${questionNumber}-${idx}`}>
+                      <label htmlFor={`option-${index}-${idx}`} className="option-label">
+                        <input
+                          type="radio"
+                          name={`question-${questionNumber}`}
+                          value={option}
+                          checked={answers[questionNumber] === option} // ✅ controlled
+                          onChange={() => handleOptionChange(option)}
+                        />
                         {option}
                       </label>
                     </div>
