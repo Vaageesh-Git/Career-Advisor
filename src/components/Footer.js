@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="footer">
@@ -12,20 +14,20 @@ export default function Footer() {
         <div className="footer-section links">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/dashboard">Dashboard</a></li>
-            <li><a href="/careers">Careers</a></li>
-            <li><a href="/scholarships">Scholarships</a></li>
-            <li><a href="/advice">Career Advice</a></li>
+            <li><Link href="/">Home</Link></li>
+            <li><Link href="/dashboard">Dashboard</Link></li>
+            <li><Link href="/careers">Careers</Link></li>
+            <li><Link href="/scholarships">Scholarships</Link></li>
+            <li><Link href="/advice">Career Advice</Link></li>
           </ul>
         </div>
         <div className="footer-section support">
           <h3>Support</h3>
           <ul>
-            <li><a href="/contact">Contact Us</a></li>
-            <li><a href="/faq">FAQs</a></li>
-            <li><a href="/privacy">Privacy Policy</a></li>
-            <li><a href="/terms">Terms of Service</a></li>
+            <li><Link href="/contact">Contact Us</Link></li>
+            <li><Link href="/faq">FAQs</Link></li>
+            <li><Link href="/privacy">Privacy Policy</Link></li>
+            <li><Link href="/terms">Terms of Service</Link></li>
           </ul>
         </div>
         <div className="footer-section contact">

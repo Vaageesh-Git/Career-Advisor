@@ -31,6 +31,10 @@ html, body {
   text-decoration: none;
 }
 
+.nav-logo img{
+  border-radius: 50%;
+}
+
 .nav-logo:hover{
   cursor: pointer;
 }
