@@ -29,7 +29,6 @@ const handleLogin = async () => {
       lastLogin: new Date(),
     });
 
-    // Get ID token and call API
     const idToken = await loggedInUser.getIdToken();
     const res = await fetch("/api/login", {
       method: "POST",
@@ -38,7 +37,6 @@ const handleLogin = async () => {
     });
 
     if (res.ok) {
-      // ✅ Only redirect AFTER cookie is set
       router.push("/");
     } else {
       console.error("Failed to create session cookie");

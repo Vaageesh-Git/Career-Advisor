@@ -23,7 +23,7 @@ html, body {
   font-size: 1.1rem;
 }
 
-.nav-logo{
+.nav-div{
   display: flex;
   align-items: center;
   gap: 1em;
@@ -31,11 +31,11 @@ html, body {
   text-decoration: none;
 }
 
-.nav-logo img{
+.nav-div img{
   border-radius: 50%;
 }
 
-.nav-logo:hover{
+.nav-div:hover{
   cursor: pointer;
 }
 
@@ -480,4 +480,95 @@ Image{
   color: #666666;
   cursor: not-allowed;
   transform: none;
+}
+
+.dashboard-main {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f5f6fa;
+  position: relative;
+}
+
+
+.dashboard-menu {
+  background-color: #000;
+  color: #fff;
+  width: 240px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  transition: transform 0.3s ease;
+}
+
+.dashboard-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.dashboard-menu-item:hover {
+  background-color: #1a1a1a;
+}
+
+
+.menu-toggle {
+  /* position: fixed; */
+  top: 20px;
+  left: 20px;
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 10px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.3s;
+
+
+}
+
+.menu-toggle:hover {
+  background-color: #222;
+}
+
+
+.dashboard-content {
+  flex: 1;
+  padding: 2rem;
+}
+
+
+.dashboard-stats {
+  padding: 2rem;
+}
+
+@media (max-width: 768px) {
+  .dashboard-menu {
+    left: 0;
+    height: 100%;
+    transform: translateX(-100%);
+    z-index: 999;
+  }
+
+  .dashboard-menu.open {
+    transform: translateX(0);
+  }
+
+  .menu-toggle{
+    display: block;
+  }
+}
+
+.dashboard-content.expanded {
+  width: 100%;
+}
+.dashboard-menu.closed {
+  width: 0;
+  padding: 0;
+  /* overflow: hidden; */
 }
