@@ -4,7 +4,7 @@ import { questionsOptions } from "../../data/questions";
 
 export default function Questionare() {
   const [questionNumber, setQuestionNumber] = useState(0);
-  const [answers, setAnswers] = useState({}); // { 0: "Option A", 1: "Option B" }
+  const [answers, setAnswers] = useState({});
   const handleOptionChange = (option) => {
     setAnswers({ ...answers, [questionNumber]: option });
   };
@@ -19,6 +19,16 @@ export default function Questionare() {
       setQuestionNumber(questionNumber - 1);
     }
   };
+
+const handleSubmit = () => {
+
+  for (let i = 0; i < questionsOptions.length; i++) {
+    if (!answers[i]) {
+      alert("⚠️ Please answer all questions before submitting!");
+      return;
+    }
+  }
+};
 
   return (
     <div className="main-form">
@@ -55,13 +65,17 @@ export default function Questionare() {
           <button type="button" onClick={handlePrev} disabled={questionNumber === 0}>
             Previous
           </button>
-          <button
+          {questionNumber < 6 ?
+            <button
             type="button"
             onClick={handleNext}
             disabled={questionNumber === questionsOptions.length - 1}
-          >
+            >
             Next
-          </button>
+            </button>
+            :
+            <button type="button" onClick={handleSubmit}>Submit</button>
+          }
         </div>
       </form>
     </div>

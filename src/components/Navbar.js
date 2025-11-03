@@ -4,10 +4,13 @@ import AuthButton from "./AuthButton";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { Menu } from "lucide-react";
+import { useMenu } from "../app/context/menuContext";
 
 export default function Navbar() {
   const [loggedIn, setLoggedIn] = useState(false);
-
+  const { menuOpen, setMenuOpen } = useMenu();
+  
   useEffect(() => {
     const auth = getAuth();
 
@@ -19,18 +22,22 @@ export default function Navbar() {
   }, []);
   return (
     <nav className="navbar">
-        <Link href="/" className="nav-logo">
-          <Image src="/logo.png" alt="Logo" width={40} height={40} />
-          <div className="nav-name">CareerNav</div>
-        </Link>
-    {loggedIn &&
-      <ul className="nav-links">
-        <li><Link href="/dashboard">Dashboard</Link></li>
-        <li><Link href="/scholarships">Scholarships</Link></li>
-        <li><Link href="/careers">Careers</Link></li>
-        <li><Link href="/advice">Advice</Link></li>
-      </ul>
-    }
+      <div className="nav-div">
+          {loggedIn &&
+            <button
+              className="menu-toggle"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle menu"
+            >
+              <Menu size={28} color="#fff" />
+            </button>
+          }
+          <Link href="/" className="nav-div">
+
+            <Image src="/logo.png" alt="Logo" width={40} height={40}/>
+            <div className="nav-name">CareerNav</div>
+          </Link>
+        </div>
 
       <AuthButton />
     </nav>
