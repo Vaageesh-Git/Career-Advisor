@@ -1,7 +1,8 @@
 "use client";
-import React, { useState } from "react";
-import { Menu, LayoutDashboard, GraduationCap, Bot, User } from "lucide-react";
+import React from "react";
+import { Search,LayoutDashboard, GraduationCap, Bot, User } from "lucide-react";
 import { useMenu } from "../context/menuContext";
+import JobCard from "@/components/JobCard";
 
 export default function Dashboard() {
     const { menuOpen } = useMenu();
@@ -33,7 +34,21 @@ export default function Dashboard() {
       </div>
 
       <div className={`dashboard-content ${menuOpen ? "" : "expanded"}`}>
-        <h2>Main Body</h2>
+        <div className="search-container">
+          <input placeholder="Search Job Here...." className="search-bar"/>
+          <button className="search-btn"><Search size={20}/></button>
+        </div>
+
+        <div className="jobcard-container">
+          <JobCard/>
+          <JobCard/>
+          <JobCard/>
+          <JobCard/>
+          <JobCard/>
+
+        </div>
+      </div>
+      <div className={`dashboard-content ${menuOpen ? "" : "expanded"}`}>
         <p>Stats or other dashboard details...</p>
       </div>
     </div>
