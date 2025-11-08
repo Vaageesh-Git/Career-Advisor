@@ -3,6 +3,8 @@ import React from "react";
 import { Search,LayoutDashboard, GraduationCap, Bot, User } from "lucide-react";
 import { useMenu } from "../context/menuContext";
 import JobCard from "@/components/JobCard";
+import ProgressChart from "@/components/ProgressChart";
+import ProgressDashboard from "@/components/ProgressDashboard";
 
 export default function Dashboard() {
     const { menuOpen } = useMenu();
@@ -39,6 +41,8 @@ export default function Dashboard() {
           <button className="search-btn"><Search size={20}/></button>
         </div>
 
+        <h1>Recommended Jobs...</h1>
+
         <div className="jobcard-container">
           <JobCard/>
           <JobCard/>
@@ -47,10 +51,11 @@ export default function Dashboard() {
           <JobCard/>
 
         </div>
+
+        <ProgressChart />
       </div>
-      <div className={`dashboard-content ${menuOpen ? "" : "expanded"}`}>
-        <p>Stats or other dashboard details...</p>
-      </div>
+
+      <ProgressDashboard/>
     </div>
   );
 }

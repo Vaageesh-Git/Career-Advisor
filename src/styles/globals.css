@@ -541,9 +541,10 @@ Image{
 
 
 .dashboard-content {
-  flex: 3;
+  flex: 4;
   padding: 2rem;
   overflow-y: hidden;
+  scroll-behavior: smooth;
 }
 
 .dashboard-main > div:last-child {
@@ -628,6 +629,33 @@ Image{
   transform: scale(1.05);
 }
 
+.dashboard-content > h1 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #004aad;
+  text-align: left;
+  margin: 1rem 0 0rem 1rem;
+  position: relative;
+  letter-spacing: 0.5px;
+}
+
+.dashboard-content > h1::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 80px;
+  height: 4px;
+  background-color: #ff4081; 
+  border-radius: 2px;
+  transition: width 0.4s ease;
+}
+
+.dashboard-content > h1:hover::after {
+  width: 130px;
+}
+
+
 .jobcard-container {
   display: flex;
   flex-wrap: nowrap;
@@ -642,11 +670,6 @@ Image{
   margin: 0;
 }
 
-.jobcard-main {
-  flex: 0 0 20rem;    
-  min-width: 20rem;   
-}
-
 .jobcard-main{
   flex: 0 0 auto;
   width: 20em;
@@ -655,6 +678,13 @@ Image{
   border-radius: 40px;
   margin-top: 2em;
   padding: 0.3em;
+  min-width: 20rem;   
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.jobcard-main:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .jobcard-header{
@@ -676,6 +706,11 @@ Image{
   align-items: center;
   border-radius: 10px;
   font-weight: bold;
+  -ms-overflow-style: none;
+}
+
+.jobcard-container::-webkit-scrollbar {
+  display: none;
 }
 
 .jobcard-content > button{
@@ -703,3 +738,142 @@ Image{
   display: flex;
   padding: 1em;
 }
+
+
+.chart-container {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  flex: 4;
+  padding: 2rem;
+  margin-top: 2rem;
+}
+
+.chart-title {
+  font-size: 1.4rem;
+  color: #004aad;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+
+.progress-dashboard {
+  background-color: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.progress-title {
+  color: #004aad;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.circular-progress {
+  width: 150px;
+  height: 150px;
+  margin: 0 auto 2rem;
+}
+
+.skills-section {
+  text-align: left;
+}
+
+.skills-title {
+  color: #004aad;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.skill-bar {
+  margin-bottom: 1rem;
+}
+
+.skill-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #333;
+}
+
+.progress-track {
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  height: 10px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #004aad, #0088ff);
+  border-radius: 8px;
+  transition: width 0.8s ease;
+}
+
+.achievements-section {
+  margin-top: 2.5rem;
+  background: linear-gradient(135deg, #004aad, #007bff);
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+.achievements-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 1rem;
+}
+
+.achievements-section::before {
+  content: "";
+  position: absolute;
+  top: -50px;
+  right: -50px;
+  width: 150px;
+  height: 150px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+}
+
+.achievements-section h3 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.5px;
+}
+
+.achievements-section li {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  color: #ffffff;
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 12px;
+  width: 90%;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: transform 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+}
+
+.achievements-section li:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: translateY(-4px);
+}
+
+.achievements-section li span.icon {
+  font-size: 1.3rem;
+}
+
+
