@@ -962,7 +962,7 @@ Image{
 
 .career-recommendations {
   margin-top: 2rem;
-  background: #f8faff;
+  background: #1d1e1e;
   padding: 1.5rem 2rem;
   border-radius: 15px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
@@ -975,7 +975,7 @@ Image{
 }
 
 .career-recommendations h3 {
-  color: #004aad;
+  color: #ffffff;
   font-weight: 600;
   margin-bottom: 1rem;
   font-size: 1.4rem;
@@ -989,12 +989,12 @@ Image{
 }
 
 .career-recommendations li {
-  background: #ffffff;
+  background: #369eff;
   padding: 0.8rem 1rem;
   border-radius: 10px;
   margin-bottom: 0.8rem;
   font-weight: 500;
-  color: #333;
+  color: #ffffff;
   display: flex;
   align-items: center;
   gap: 10px;
@@ -1003,7 +1003,7 @@ Image{
 }
 
 .career-recommendations li:hover {
-  background-color: #e8f0fe;
+  background-color: #ed972e;
   transform: translateX(4px);
 }
 
