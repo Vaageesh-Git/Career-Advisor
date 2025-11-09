@@ -15,6 +15,7 @@ export default function ProgressDashboard() {
 
   return (
     <div className="progress-dashboard">
+
       <h2 className="progress-title">Your Progress Overview</h2>
 
       {/* Circular Progress */}
@@ -49,6 +50,24 @@ export default function ProgressDashboard() {
             </div>
           </div>
         ))}
+      </div>
+
+      <div className="career-recommendations">
+        <h3>Recommended Learning Paths</h3>
+        <ul>
+          <li>🔹 Data Analysis with Python</li>
+          <li>🔹 Resume Building Workshop</li>
+          <li>🔹 Public Speaking & Communication</li>
+        </ul>
+      </div>
+
+      <div className="certificates-section">
+        <h3>Your Badges</h3>
+        <div className="badges-container">
+          <div className="badge">🏅 Python Beginner</div>
+          <div className="badge">🎓 Career Explorer</div>
+          <div className="badge">💼 Scholarship Star</div>
+        </div>
       </div>
 
       <div className="achievements-section">
