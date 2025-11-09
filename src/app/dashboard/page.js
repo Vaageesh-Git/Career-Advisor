@@ -5,6 +5,7 @@ import { useMenu } from "../context/menuContext";
 import JobCard from "@/components/JobCard";
 import ProgressChart from "@/components/ProgressChart";
 import ProgressDashboard from "@/components/ProgressDashboard";
+import TopScholarships from "@/components/TopScholarships";
 
 export default function Dashboard() {
     const { menuOpen } = useMenu();
@@ -53,6 +54,7 @@ export default function Dashboard() {
         </div>
 
         <ProgressChart />
+        <TopScholarships />
       </div>
 
       <ProgressDashboard/>
