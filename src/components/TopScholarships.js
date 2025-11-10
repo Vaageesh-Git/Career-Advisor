@@ -3,7 +3,9 @@ import React from "react";
 export default function TopScholarships(){
     const arr = ["Scholarship....","Scholarship....","Scholarship....","Scholarship....","Scholarship....","Scholarship....","Scholarship....","Scholarship....","Scholarship...."]
     return (
-        <div className="top-scholarships">
+        <>
+        <h1>Top Scholarships</h1>
+        <div className="top-scholarships">            
             {
             arr.map((sch,idx)=>
                 <div className="top-scholarship-card" key={idx}>
@@ -14,5 +16,6 @@ export default function TopScholarships(){
             )
         }
         </div>
+    </>
     )
 }
