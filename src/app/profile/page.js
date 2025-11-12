@@ -22,7 +22,7 @@ export default function ProfilePage() {
     <div className="profile-page-main">
     <MenuBar/>
     <div className="profile-page">    
-      {/* --- Header Section --- */}
+
       <div className="profile-header">
         <div className="profile-avatar">
           <Image
@@ -46,13 +46,13 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* --- Skill Progress --- */}
+
       <div className="profile-section">
         <h2>Skill Progress</h2>
         <ProgressChart />
       </div>
 
-      {/* --- Badges Section --- */}
+
       <div className="profile-section">
         <h2>Your Badges</h2>
         <div className="badges-container">
@@ -65,7 +65,7 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* --- Skills Section --- */}
+
       <div className="profile-section">
         <h2>Core Skills</h2>
         <div className="skills-container">
@@ -75,7 +75,7 @@ export default function ProfilePage() {
         </div>
       </div>
 
-      {/* --- Recent Achievements --- */}
+
       <div className="profile-section achievements">
         <h2>Recent Achievements</h2>
         <ul>
