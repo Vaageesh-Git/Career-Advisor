@@ -35,7 +35,7 @@ export default function ScholarshipsPage() {
     <div className="scholarships-page-main">
       <MenuBar/>
       <div className="scholarships-page">
-        {/* Hero Banner */}
+
         <section className="scholarship-hero">
           <h1>Find the Best Scholarships for You 🎓</h1>
           <p>Explore global opportunities tailored to your career goals.</p>
@@ -45,7 +45,7 @@ export default function ScholarshipsPage() {
           </div>
         </section>
 
-        {/* Featured Scholarships */}
+
         <section className="featured-scholarships">
           <h2>🌟 Featured Scholarships</h2>
           <div className="scholarship-grid">
@@ -66,7 +66,7 @@ export default function ScholarshipsPage() {
           </div>
         </section>
 
-        {/* Top Picks Carousel */}
+
         <section className="top-scholarships-carousel">
           <h2>🏆 Top Picks for You</h2>
           <div className="scroll-container">
@@ -81,7 +81,7 @@ export default function ScholarshipsPage() {
           </div>
         </section>
 
-        {/* Call to Action */}
+
         <section className="scholarship-cta">
           <h2>✨ Want Personalized Scholarship Matches?</h2>
           <p>Answer a few questions and get scholarships that fit your profile.</p>
