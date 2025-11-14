@@ -1,8 +1,11 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import axios from "axios";
 
 export default function SignupPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -13,10 +16,21 @@ export default function SignupPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
-    alert("Signup Successful!");
+    try{
+      const response = await axios.post('/api/signup',formData)
+      if (response?.status === 201){
+        alert("Account Created Successfully")
+      }
+      router.push('/login')
+    } catch (err) {
+      console.error("Axios Error:", err.response?.data || err.message);
+      if (err.response?.status === 409){
+        alert('User Already Exists')
+      }
+      router.push('/login')
+    }
   };
 
   return (
