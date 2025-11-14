@@ -1,25 +1,15 @@
 "use client";
 import Link from "next/link";
-import AuthButton from "./AuthButton";
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { Menu } from "lucide-react";
 import { useMenu } from "../app/context/menuContext";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [loggedIn, setLoggedIn] = useState(false);
   const { menuOpen, setMenuOpen } = useMenu();
-  
-  useEffect(() => {
-    const auth = getAuth();
-
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setLoggedIn(!!user);
-    });
-
-    return () => unsubscribe();
-  }, []);
   return (
     <nav className="navbar">
       <div className="nav-div">
@@ -38,8 +28,24 @@ export default function Navbar() {
             <div className="nav-name">CareerNav</div>
           </Link>
         </div>
+      <div className="nav-ctas">
+        {
+          pathname == '/' ? 
+          (
+            <>
+              <Link href="/login"><button>Login</button></Link>
+              <Link href="/signup"><button>Register</button></Link>
+            </>
+          ) : pathname == '/login' ?
+          (
+            <Link href="/signup"><button>Register</button></Link>
+          ) : pathname == '/signup' ? 
+          (
+            <Link href="/login"><button>Login</button></Link>
+          ) : null
 
-      <AuthButton />
+        }
+      </div>
     </nav>
   );
 }

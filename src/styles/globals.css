@@ -30,7 +30,7 @@ button:hover{
   font-size: 1.1rem;
   position: fixed;
   top: 0;         
-  width: 100%; 
+  width: 100%;
   z-index: 1000;
 }
 
@@ -55,29 +55,20 @@ button:hover{
   font-size: 1.3em;
 }
 
-.nav-links {
-  list-style: none;
+.nav-ctas{
   display: flex;
-  gap: 1.1em;
-  margin: 0;
-  padding: 0;
+  gap: 1em;
+  margin-right: 4rem;
+  height: auto;
 }
 
-.nav-links a {
-  text-decoration: none;
-  color: white;
-  font-weight: 1em;
-  border: 1px solid transparent;
+.nav-ctas button{
+  background-color: #ffffff;
+  height: 2.5rem;
+  width: 6em;
   border-radius: 20px;
-  padding: 0.2em 0.4em;
-}
-
-.nav-links a:hover {
-  text-decoration: underline;
-  background-color: rgb(255, 219, 147);
-  color: black;
+  color: rgb(0, 0, 0);
   font-weight: bold;
-  transition: 0.2s;
 }
 
 @media (max-width: 768px) {

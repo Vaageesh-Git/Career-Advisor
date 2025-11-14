@@ -3,7 +3,6 @@ import Image from "next/image";
 import HomePageCard from "@/components/HomePageCard";
 import { useEffect, useState, useRef } from "react";
 import ProfileCard from "@/components/ProfileCard";
-import AuthButton from "@/components/AuthButton";
 import cards from "@/data/topFeaturesHomeCard";
 
 export default function HomePage() {
@@ -100,7 +99,6 @@ export default function HomePage() {
         <Image src="/hero_img.png" alt="cover_image" width={1330} height={500}
             style={{ width: "100%"}}
         />
-        <AuthButton buttonText="Get Started"/>
       </div>
       <div className="homepage-cards-container">
           {cards.map((i)=>
@@ -159,7 +157,6 @@ export default function HomePage() {
           {footerCtaText}
         </h1>
         <p>Join thousands of professionals who have found their perfect career path with CareerNavigator.</p>
-        <AuthButton buttonText="Get Started Free"/>
       </div>
     </div>
   );
