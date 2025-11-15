@@ -1,19 +1,30 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useEffect } from "react";
 import { Menu } from "lucide-react";
-import { useMenu } from "../app/context/menuContext";
 import { usePathname } from "next/navigation";
+import axios, { Axios } from "axios";
+import { useRouter } from "next/navigation";
+import { useMenu } from "@/app/context/menuContext";
 
 export default function Navbar() {
-  const pathname = usePathname();
-  const [loggedIn, setLoggedIn] = useState(false);
+  const router = useRouter();
   const { menuOpen, setMenuOpen } = useMenu();
+  const pathname = usePathname();
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.post('/api/logout');
+      router.push('/')
+    } catch(err){
+      console.error(err)
+    }
+  };
+
   return (
     <nav className="navbar">
       <div className="nav-div">
-          {loggedIn &&
+          {1 &&
             <button
               className="menu-toggle"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -42,8 +53,10 @@ export default function Navbar() {
           ) : pathname == '/signup' ? 
           (
             <Link href="/login"><button>Login</button></Link>
-          ) : null
-
+          ) :
+          (
+            <Link href="/"><button onClick={handleLogout}>Logout</button></Link>
+          )
         }
       </div>
     </nav>

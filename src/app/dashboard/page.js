@@ -9,7 +9,7 @@ import MenuBar from "@/components/MenuBar";
 import { useMenu } from "../context/menuContext";
 
 export default function Dashboard() {
-  const { menuOpen } = useMenu();
+  const { menuOpen,setMenuOpen } = useMenu();
   return (
     <div className="dashboard-main">
       <MenuBar/>
