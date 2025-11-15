@@ -31,7 +31,7 @@ export async function POST(request) {
         if (!isPasswordValid){
             return NextResponse.json(
                 {error : "Incorrect Credentials"},
-                {status : 401}
+                {status : 409}
             )
         };
 
@@ -43,10 +43,19 @@ export async function POST(request) {
         const secret = process.env.SECRET_KEY;
 
         const token = jwt.sign(payload,secret,{expiresIn : '1h'})
-        return NextResponse.json(
-            {token : token},
-            {status : 200}
-        );
+
+
+        const response = NextResponse.json({ success: true },{status : 200});
+
+        response.cookies.set("token", token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+            path: "/",
+            maxAge: 60 * 60 * 24
+        });
+
+        return response;
 
     } catch(err) {
         return NextResponse.json(
