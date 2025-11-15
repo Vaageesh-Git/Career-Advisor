@@ -2,8 +2,10 @@
 import Image from "next/image";
 import { useState } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function SignupPage() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -14,9 +16,20 @@ export default function SignupPage() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form Submitted:", formData);
+    try{
+      const response = await axios.post('/api/login',formData)
+      if (response?.status === 200){
+        router.push('/dashboard')
+      }
+    } catch(err){
+      if (err.response?.status === 404){
+        alert('User Does Not Exists.')
+      } else if (err.response?.status === 409){
+        alert('Invalid Crdentials')
+      }
+    }
   };
 
   return (
