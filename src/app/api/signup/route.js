@@ -1,4 +1,3 @@
-import { messaging } from "firebase-admin";
 import { NextResponse } from "next/server";
 const bcrypt = require('bcrypt');
 const { PrismaClient } = require('@prisma/client');
