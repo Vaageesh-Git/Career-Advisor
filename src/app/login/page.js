@@ -3,8 +3,11 @@ import Image from "next/image";
 import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../context/authContext";
+
 
 export default function SignupPage() {
+  const { setLoggedIn } = useAuth();
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
@@ -21,9 +24,11 @@ export default function SignupPage() {
     try{
       const response = await axios.post('/api/login',formData)
       if (response?.status === 200){
+        setLoggedIn(true)
         router.push('/dashboard')
       }
     } catch(err){
+      console.log(err.response?.data)
       if (err.response?.status === 404){
         alert('User Does Not Exists.')
       } else if (err.response?.status === 409){
@@ -36,7 +41,7 @@ export default function SignupPage() {
     <div className="signup-container">
       <div className="signup-image">
         <Image
-          src="/login-illustration.png"
+          src='/lg-sp-illustration.png'
           alt="Career growth illustration"
           width={500}
           height={500}
@@ -80,7 +85,7 @@ export default function SignupPage() {
           </button>
 
           <p className="login-link">
-            Don't have a Account? <a href="/signup">Signup</a>
+            Don&apos;t have a Account? <a href="/signup">Signup</a>
           </p>
         </form>
       </div>

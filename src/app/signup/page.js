@@ -37,7 +37,7 @@ export default function SignupPage() {
     <div className="signup-container">
       <div className="signup-image">
         <Image
-          src="/login-illustration.png"
+          src="/lg-sp-illustration.png"
           alt="Career growth illustration"
           width={500}
           height={500}

@@ -6,15 +6,18 @@ import { usePathname } from "next/navigation";
 import axios, { Axios } from "axios";
 import { useRouter } from "next/navigation";
 import { useMenu } from "@/app/context/menuContext";
+import { useAuth } from "@/app/context/authContext";
 
 export default function Navbar() {
   const router = useRouter();
+  const { loggedIn, setLoggedIn } = useAuth();
   const { menuOpen, setMenuOpen } = useMenu();
   const pathname = usePathname();
 
   const handleLogout = async () => {
     try {
       const response = await axios.post('/api/logout');
+      setLoggedIn(false)
       router.push('/')
     } catch(err){
       console.error(err)
@@ -24,7 +27,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="nav-div">
-          {1 &&
+          {loggedIn &&
             <button
               className="menu-toggle"
               onClick={() => setMenuOpen(!menuOpen)}
