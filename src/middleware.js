@@ -22,7 +22,7 @@ export async function middleware(request) {
 
   if (isProtected) {
     if (!token) {
-      return NextResponse.redirect(new URL("/login", request.url));
+      return NextResponse.redirect(new URL("/", request.url));
     }
 
     try {
