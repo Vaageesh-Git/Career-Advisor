@@ -4,6 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/authContext";
+import Link from "next/link";
 
 
 export default function SignupPage() {
@@ -85,7 +86,7 @@ export default function SignupPage() {
           </button>
 
           <p className="login-link">
-            Don&apos;t have a Account? <a href="/signup">Signup</a>
+            Don&apos;t have a Account? <Link href="/signup">Signup</Link>
           </p>
         </form>
       </div>
