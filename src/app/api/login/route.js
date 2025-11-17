@@ -44,8 +44,7 @@ export async function POST(request) {
 
         const token = jwt.sign(payload,secret,{expiresIn : '1h'})
 
-
-        const response = NextResponse.json({ success: true },{status : 200});
+        const response = NextResponse.json({ success: true },{status : 200},{hasCompletedOnboarding : userData.hasCompletedOnboarding});
 
         response.cookies.set("token", token, {
             httpOnly: true,
@@ -63,4 +62,4 @@ export async function POST(request) {
             {status : 500}
         )
     };
-}
+};

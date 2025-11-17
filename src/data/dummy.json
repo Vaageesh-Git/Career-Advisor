@@ -1,0 +1,93 @@
+{
+  "career_path_summary": "As a recent graduate with a strong interest in Business, Finance, and Marketing, you are driven by an entrepreneurial spirit with a clear goal of starting your own business within the next five years. You thrive on hands-on projects and practical exercises, dedicating 6-10 hours weekly to learning new skills, and are keen on exploring scholarship opportunities to support your growth.",
+  "recommended_jobs": [
+    {
+      "role": "Business Development Associate",
+      "company": "GrowthForge Solutions",
+      "description": "Engage with potential clients to identify new business opportunities and support sales strategies. Perfect for developing key entrepreneurial skills in market expansion.",
+      "tag": "Full Time"
+    },
+    {
+      "role": "Junior Marketing Specialist",
+      "company": "BrandLaunch Agency",
+      "description": "Assist in developing and executing digital marketing campaigns and content strategies. Gain practical experience in brand building essential for your own venture.",
+      "tag": "Full Time"
+    },
+    {
+      "role": "Financial Analyst Trainee",
+      "company": "Capital Insight Corp.",
+      "description": "Support financial modeling, data analysis, and market research for investment decisions. Build a strong foundation in finance critical for business management.",
+      "tag": "Full Time"
+    },
+    {
+      "role": "E-commerce Operations Assistant",
+      "company": "InnovateMarket Inc.",
+      "description": "Manage online store operations, inventory, and customer experience. Directly apply business principles in a hands-on digital commerce environment.",
+      "tag": "Full Time"
+    },
+    {
+      "role": "Startup Incubation Program Intern",
+      "company": "VentureCatalyst Hub",
+      "description": "Work directly with early-stage startups on various business functions, from strategy to execution. Gain invaluable insight into building a business from the ground up.",
+      "tag": "Internship"
+    },
+    {
+      "role": "Product Marketing Coordinator",
+      "company": "TechSpark Innovations",
+      "description": "Support the launch of new products by crafting compelling messaging and market strategies. Learn how to position and grow offerings in competitive landscapes.",
+      "tag": "Full Time"
+    }
+  ],
+  "recommended_learning_paths": [
+    "Digital Marketing & E-commerce Specialization",
+    "Financial Modeling and Valuation Analyst (FMVA) Certification",
+    "Business Strategy & Entrepreneurship Fundamentals",
+    "Project Management Professional (PMP) Certification Prep",
+    "Sales & Negotiation Skills for Business Growth",
+    "Lean Startup Principles & Business Model Canvas"
+  ],
+  "progress_insights": {
+    "overall_progress_percent": 45,
+    "skills": [
+      { "name": "Marketing Strategy", "value": 60 },
+      { "name": "Financial Analysis", "value": 45 },
+      { "name": "Business Development", "value": 55 },
+      { "name": "Project Management", "value": 40 },
+      { "name": "Entrepreneurship", "value": 50 }
+    ]
+  },
+  "scholarship_matches": [
+    {
+      "name": "Young Entrepreneur Grant Program",
+      "country": "United States",
+      "deadline": "October 31, 2024",
+      "description": "Funding for recent graduates pursuing innovative business ventures or startup ideas."
+    },
+    {
+      "name": "Global Business Leader Fellowship",
+      "country": "United Kingdom",
+      "deadline": "November 15, 2024",
+      "description": "Supports talented individuals in business, finance, or marketing pursuing advanced education or professional development."
+    },
+    {
+      "name": "Digital Marketing Innovator Scholarship",
+      "country": "Canada",
+      "deadline": "September 30, 2024",
+      "description": "Aimed at students and recent grads passionate about digital marketing and e-commerce innovations."
+    }
+  ],
+  "top_picks": [
+    {
+      "title": "Local Startup Weekend Competition",
+      "desc": "Join a 54-hour event where you can pitch ideas, form teams, and launch a startup."
+    },
+    {
+      "title": "Online Course: 'Build Your First E-commerce Store'",
+      "desc": "A hands-on course guiding you through setting up and launching an online business."
+    },
+    {
+      "title": "Networking Event: 'Young Professionals in Business'",
+      "desc": "Connect with peers and mentors in the business and finance sectors."
+    }
+  ]
+}
