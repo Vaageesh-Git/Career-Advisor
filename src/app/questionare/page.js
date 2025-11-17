@@ -1,10 +1,12 @@
 'use client';
 import { useState } from "react";
 import { questionsOptions } from "../../data/questions";
+import { useQuestionAnswers } from "../context/questionAnswersContext";
+import axios from "axios";
 
 export default function Questionare() {
   const [questionNumber, setQuestionNumber] = useState(0);
-  const [answers, setAnswers] = useState({});
+  const { answers, setAnswers } = useQuestionAnswers();
   const handleOptionChange = (option) => {
     setAnswers({ ...answers, [questionNumber]: option });
   };
@@ -21,13 +23,14 @@ export default function Questionare() {
   };
 
 const handleSubmit = () => {
-
   for (let i = 0; i < questionsOptions.length; i++) {
     if (!answers[i]) {
       alert("⚠️ Please answer all questions before submitting!");
       return;
     }
   }
+  const response = axios.post('/api/gemini' ,{answers})
+
 };
 
   return (
