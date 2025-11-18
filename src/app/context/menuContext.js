@@ -4,7 +4,7 @@ import { createContext, useContext, useState } from "react";
 const MenuContext = createContext();
 
 export function MenuProvider({ children }) {
-  const [menuOpen, setMenuOpen] = useState(true);
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <MenuContext.Provider value={{ menuOpen, setMenuOpen }}>
       {children}

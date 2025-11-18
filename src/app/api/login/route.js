@@ -43,8 +43,9 @@ export async function POST(request) {
         const secret = process.env.SECRET_KEY;
 
         const token = jwt.sign(payload,secret,{expiresIn : '1h'})
+        console.log(userData.hasCompletedOnboarding)
 
-        const response = NextResponse.json({ success: true },{status : 200},{hasCompletedOnboarding : userData.hasCompletedOnboarding});
+        const response = NextResponse.json({ success: true, hasCompletedOnboarding : userData.hasCompletedOnboarding },{status : 200});
 
         response.cookies.set("token", token, {
             httpOnly: true,

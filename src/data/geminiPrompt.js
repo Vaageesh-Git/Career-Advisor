@@ -18,12 +18,20 @@ The questionnaire questions were:
 Use these answers to generate highly personalized recommendations
 that match the UI components of the app.
 
-### IMPORTANT:
-- You MUST output **at least 5 job roles** inside "recommended_jobs".
-- Job roles must be realistic, relevant to the user's answers, and each must be unique.
-- For jobs, generate logical placeholder companies if needed.
+### IMPORTANT OUTPUT RULES:
+- You MUST output **exactly the JSON structure below**.
+- ALL job descriptions MUST be **4 to 6 words only**, very short and crisp.
+- "recommended_jobs" MUST contain **at least 5 job roles**.
+- "scholarship_matches" MUST contain **at least 6 scholarships**.
+- "recommended_learning_paths" MUST contain **short items (max 4-6 words)**.
+- "top_picks" must return **at least 3 items**.
+- DO NOT output markdown, code blocks, backticks, or explanations.
+- DO NOT add comments.
+- ONLY output VALID JSON.
+- DO NOT change any key names.
+- DO NOT include trailing commas.
 
-Return the response ONLY in the following JSON format:
+Return the response ONLY in this JSON structure:
 
 {
   "career_path_summary": "One short paragraph explaining user's profile",
@@ -31,14 +39,12 @@ Return the response ONLY in the following JSON format:
     {
       "role": "Job Role Name",
       "company": "Company Name",
-      "description": "2 line summary",
+      "description": "4-6 words only",
       "tag": "Full Time / Internship / Remote"
     }
-    // MUST contain at least 5 job roles
   ],
   "recommended_learning_paths": [
-    "Skill or course",
-    "Skill or course"
+    "short 4-6 word title"
   ],
   "progress_insights": {
     "overall_progress_percent": 0-100,
@@ -51,7 +57,7 @@ Return the response ONLY in the following JSON format:
       "name": "Scholarship Name",
       "country": "Country",
       "deadline": "Month Day, Year",
-      "description": "one sentence"
+      "description": "one short sentence"
     }
   ],
   "top_picks": [
@@ -61,7 +67,6 @@ Return the response ONLY in the following JSON format:
 
 Rules:
 - ONLY return valid JSON.
-- DO NOT return markdown, explanation, or comments.
-- DO NOT include trailing commas.
-- Every job role must be strongly customized based on the user's answers.
+- No markdown.
+- No extra commentary.
 `;
