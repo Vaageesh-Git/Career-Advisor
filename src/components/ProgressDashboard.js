@@ -3,18 +3,13 @@ import React from "react";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 
-export default function ProgressDashboard() {
-  const overallProgress = 78;
-
-  const skills = [
-    { name: "Communication", value: 85 },
-    { name: "Problem Solving", value: 70 },
-    { name: "Leadership", value: 60 },
-    { name: "Creativity", value: 90 },
-  ];
+export default function ProgressDashboard({insights,learningPaths}) {
+  const overallProgress = insights.overall_progress_percent;
+  const skills = insights.skills;
 
   return (
     <div className="progress-dashboard">
+      
 
       <h2 className="progress-title">Your Progress Overview</h2>
 
@@ -55,18 +50,18 @@ export default function ProgressDashboard() {
       <div className="career-recommendations">
         <h3>Recommended Learning Paths</h3>
         <ul>
-          <li>🔹 Data Analysis with Python</li>
-          <li>🔹 Resume Building Workshop</li>
-          <li>🔹 Public Speaking & Communication</li>
+          {learningPaths?.map((path, idx) => (
+            <li key={idx}>🔹 {path}</li>
+          ))}
         </ul>
       </div>
 
       <div className="certificates-section">
         <h3>Your Badges</h3>
         <div className="badges-container">
-          <div className="badge">🏅 Python Beginner</div>
+          <div className="badge">🏅 Skill Builder</div>
           <div className="badge">🎓 Career Explorer</div>
-          <div className="badge">💼 Scholarship Star</div>
+          <div className="badge">💼 Job Ready</div>
         </div>
       </div>
 

@@ -1,7 +1,7 @@
 import React from "react";
 import { Briefcase } from "lucide-react";
 
-export default function JobCard(){
+export default function JobCard({job}){
     return (
         <div className="jobcard-main">
             <div className="jobcard-header">
@@ -12,13 +12,14 @@ export default function JobCard(){
             </div>
             <div className="jobcard-body">
                 <div className="jobcard-content">
-                    <h1>Marketting Specialist</h1>
-                    <h4>Tech Innovation Ltd.</h4>
-                    <p>ferfkekfjkjekfjekwjklf</p>
+                    <h2>{job.role}</h2>
+                    <h4>{job.company}</h4>
+                    <p>{job.description}</p>
+
                     <button>Apply Now</button>
                 </div>
                 <div className="jobcard-image">
-
+                    {/* image  */}
                 </div>
             </div>
         </div>

@@ -21,4 +21,19 @@ model User {
   hasCompletedOnboarding Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
+  recommendation UserRecommendation?
+}
+
+model UserRecommendation {
+  id                     Int      @id @default(autoincrement())
+  userId                 Int      @unique
+  user                   User     @relation(fields: [userId], references: [id])
+  careerPathSummary      String   @db.LongText
+  recommendedJobs        Json 
+  recommendedLearning    Json  
+  progressInsights       Json  
+  scholarshipMatches     Json  
+  topPicks               Json     
+  createdAt              DateTime @default(now())
+  updatedAt              DateTime @updatedAt
 }

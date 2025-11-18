@@ -3,8 +3,10 @@ import { useState } from "react";
 import { questionsOptions } from "../../data/questions";
 import { useQuestionAnswers } from "../context/questionAnswersContext";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 export default function Questionare() {
+  const router = useRouter();
   const [questionNumber, setQuestionNumber] = useState(0);
   const { answers, setAnswers } = useQuestionAnswers();
   const handleOptionChange = (option) => {
@@ -22,14 +24,24 @@ export default function Questionare() {
     }
   };
 
-const handleSubmit = () => {
+const handleSubmit = async () => {
   for (let i = 0; i < questionsOptions.length; i++) {
     if (!answers[i]) {
       alert("⚠️ Please answer all questions before submitting!");
       return;
     }
   }
-  const response = axios.post('/api/gemini' ,{answers})
+
+  try{
+    const response = await axios.post('/api/gemini' ,{answers})
+    router.push('/dashboard')
+  } catch(err){
+      alert(
+        err.response?.data?.error ||
+        err.message ||
+        "Something went wrong"
+      );
+  }
 
 };
 

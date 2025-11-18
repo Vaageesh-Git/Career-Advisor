@@ -3,7 +3,7 @@ import { jwtVerify } from "jose";
 
 export async function middleware(request) {
   const publicPaths = ["/", "/login"];
-  const protectedPaths = ["/dashboard", "/scholarships", "/profile"];
+  const protectedPaths = ["/dashboard", "/scholarships", "/profile","/questionare"];
 
   const path = request.nextUrl.pathname;
   const token = request.cookies.get("token")?.value;
@@ -43,5 +43,6 @@ export const config = {
     "/dashboard/:path*",
     "/scholarships/:path*",
     "/profile/:path*",
+    "/questionare/:path*"
   ],
 };
