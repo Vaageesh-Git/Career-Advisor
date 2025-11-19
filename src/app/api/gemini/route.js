@@ -31,6 +31,7 @@ export async function POST(request) {
             .trim();
         // console.log(cleanText)
         const json = JSON.parse(cleanText);
+        console.log(json)
 
         const userId = decoded.id;
 
