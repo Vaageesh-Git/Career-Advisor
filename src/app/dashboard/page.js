@@ -8,25 +8,13 @@ import TopScholarships from "@/components/TopScholarships";
 import MenuBar from "@/components/MenuBar";
 import { useMenu } from "../context/menuContext";
 import axios from "axios";
+import { useDataContext } from "../context/aiDataContext";
 
 export default function Dashboard() {
   const { menuOpen,setMenuOpen } = useMenu();
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    async function fetchRec() {
-      try {
-        const response = await axios.get("/api/recommendations");
-        setData(response.data);
-      } catch (err) {
-        console.error("Error fetching recommendations:", err);
-      }
-    }
-
-    fetchRec();
-  }, []); 
+  const { data } = useDataContext();
 
   if (!data) {
-
     return <h2>Loading your personalized dashboard...</h2>;
   }
   return (

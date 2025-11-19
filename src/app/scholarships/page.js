@@ -3,33 +3,17 @@ import React from "react";
 import { Search, Globe, GraduationCap, Star } from "lucide-react";
 import { useMenu } from "../context/menuContext";
 import MenuBar from "@/components/MenuBar";
+import { useDataContext } from "../context/aiDataContext";
 
 export default function ScholarshipsPage() {
-  const scholarships = [
-    {
-      name: "Google Women Techmakers Scholarship",
-      desc: "Empowering women pursuing computer science degrees.",
-      country: "Global",
-      deadline: "March 15, 2025",
-      type: "STEM",
-    },
-    {
-      name: "Rhodes Scholarship",
-      desc: "Fully funded postgraduate program at the University of Oxford.",
-      country: "UK",
-      deadline: "October 3, 2025",
-      type: "Postgraduate",
-    },
-    {
-      name: "Aditya Birla Scholarship",
-      desc: "For outstanding Indian students in engineering, law, and management.",
-      country: "India",
-      deadline: "July 15, 2025",
-      type: "Undergraduate",
-    },
-  ];
+  const {data} = useDataContext();
   const { menuOpen } = useMenu();
+  if (!data) {
+    return <h2>Loading scholarships...</h2>;
+  }
 
+  const scholarships = data.scholarshipMatches || [];
+  const topPicks = data.topPicks || [];
 
   return (
     <div className="scholarships-page-main">
@@ -55,7 +39,7 @@ export default function ScholarshipsPage() {
                   <GraduationCap size={22} color="#004aad"/>
                   <h3>{sch.name}</h3>
                 </div>
-                <p>{sch.desc}</p>
+                <p>{sch.description}</p>
                 <div className="card-footer">
                   <span><Globe size={16}/> {sch.country}</span>
                   <span>⏰ {sch.deadline}</span>
@@ -70,11 +54,11 @@ export default function ScholarshipsPage() {
         <section className="top-scholarships-carousel">
           <h2>🏆 Top Picks for You</h2>
           <div className="scroll-container">
-            {[...Array(7)].map((_, i) => (
+            {topPicks.map((pick, i) => (
               <div key={i} className="scholarship-page-card">
                 <Star size={18} color="#FFD700" />
-                <h4>Scholarship {i + 1}</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                <h4>{pick.title}</h4>
+                <p>{pick.desc}</p>
                 <button>View Details</button>
               </div>
             ))}
