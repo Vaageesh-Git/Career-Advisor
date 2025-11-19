@@ -671,7 +671,9 @@ Image{
 }
 
 .jobcard-main{
-  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   width: 20em;
   background-color: #ffffff;
   height: 20em;
@@ -713,7 +715,7 @@ Image{
   display: none;
 }
 
-.jobcard-content > button{
+.jobcard-main > button{
   width: 9em;
   height: 3em;
   border-radius: 10px;
@@ -721,6 +723,8 @@ Image{
   color: white;
   font-weight: bold;
   transition: 0.3s;
+  margin-bottom: 1em;
+  margin-left: 7em;
 }
 
 
@@ -896,7 +900,7 @@ Image{
 .top-scholarship-card {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background: #ffffff;
   border-radius: 15px;

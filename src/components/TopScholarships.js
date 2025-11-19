@@ -8,12 +8,13 @@ export default function TopScholarships({scholarships}){
         <div className="top-scholarships">            
             {
             scholarships.map((sch,idx)=>
-                <div className="top-scholarship-card" key={idx}>
-                    <h2>{sch.name}</h2>
-                    <p>{sch.description}</p>
+                <div className="top-scholarship-card">
+                    <div key={idx}>
+                        <h2>{sch.name}</h2>
+                        <p>{sch.description}</p>
+                    </div>
                     <button>Apply Now</button>
                 </div>
-                
             )
         }
         </div>

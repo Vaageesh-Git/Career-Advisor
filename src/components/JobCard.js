@@ -15,13 +15,9 @@ export default function JobCard({job}){
                     <h2>{job.role}</h2>
                     <h4>{job.company}</h4>
                     <p>{job.description}</p>
-
-                    <button>Apply Now</button>
-                </div>
-                <div className="jobcard-image">
-                    {/* image  */}
                 </div>
             </div>
+            <button>Apply Now</button>
         </div>
     )
 }
