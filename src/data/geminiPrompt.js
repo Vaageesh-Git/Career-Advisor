@@ -20,10 +20,10 @@ that match the UI components of the app.
 
 ### IMPORTANT OUTPUT RULES:
 - You MUST output **exactly the JSON structure below**.
-- ALL job descriptions MUST be **4 to 6 words only**, very short and crisp.
-- "recommended_jobs" MUST contain **at least 5 job roles**.
-- "scholarship_matches" MUST contain **at least 6 scholarships**.
-- "recommended_learning_paths" MUST contain **short items (max 4-6 words)**.
+- ALL job descriptions MUST be 4 to 6 words only**, very short and crisp.
+- "recommended_jobs" MUST contain at least 5 job roles**.
+- "scholarship_matches" MUST contain at least 9 scholarships**.
+- "recommended_learning_paths" MUST contain short items (max 4-6 words)**.
 - "top_picks" must return **at least 3 items**.
 - DO NOT output markdown, code blocks, backticks, or explanations.
 - DO NOT add comments.
