@@ -4,11 +4,15 @@ import { questionsOptions } from "../../data/questions";
 import { useQuestionAnswers } from "../context/questionAnswersContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../context/authContext";
+import { useDataContext } from "../context/aiDataContext";
 
 export default function Questionare() {
   const router = useRouter();
+  const {setData} = useDataContext();
   const [questionNumber, setQuestionNumber] = useState(0);
   const { answers, setAnswers } = useQuestionAnswers();
+  const {setLoggedIn} = useAuth();
   const handleOptionChange = (option) => {
     setAnswers({ ...answers, [questionNumber]: option });
   };
@@ -32,15 +36,22 @@ const handleSubmit = async () => {
     }
   }
 
-  try{
-    const response = await axios.post('/api/gemini' ,{answers})
-    router.push('/dashboard')
-  } catch(err){
-      alert(
-        err.response?.data?.error ||
-        err.message ||
-        "Something went wrong"
-      );
+  try {
+    await axios.post("/api/gemini", { answers });
+
+    setLoggedIn(true);
+
+    const rec = await axios.get("/api/recommendations");
+    setData(rec.data);
+
+    router.push("/dashboard");
+
+  } catch (err) {
+    alert(
+      err.response?.data?.error ||
+      err.message ||
+      "Something went wrong"
+    );
   }
 
 };
@@ -64,7 +75,7 @@ const handleSubmit = async () => {
                           type="radio"
                           name={`question-${questionNumber}`}
                           value={option}
-                          checked={answers[questionNumber] === option} // ✅ controlled
+                          checked={answers[questionNumber] === option}
                           onChange={() => handleOptionChange(option)}
                         />
                         {option}

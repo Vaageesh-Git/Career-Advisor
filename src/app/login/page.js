@@ -5,10 +5,11 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/authContext";
 import Link from "next/link";
-
+import { useDataContext } from "../context/aiDataContext";
 
 export default function SignupPage() {
   const { setLoggedIn } = useAuth();
+  const { setData } = useDataContext();
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
@@ -25,8 +26,9 @@ export default function SignupPage() {
     try{
       const response = await axios.post('/api/login',formData)
       if (response?.status === 200){
-        setLoggedIn(true)
+        setData(null);
         if (response.data.hasCompletedOnboarding === true){
+          setLoggedIn(true)
           router.push('/dashboard')
         } else {
           router.push('/questionare')

@@ -29,7 +29,7 @@ export async function POST(request) {
             .replace(/```json/g, "")
             .replace(/```/g, "")
             .trim();
-        // console.log(cleanText)
+
         const json = JSON.parse(cleanText);
         console.log(json)
 
@@ -74,6 +74,6 @@ export async function POST(request) {
 
     } catch(err){
         console.error("Gemini Error" , err)
-        return NextResponse.json({ error: "Internal Server Error" }, { status: 500 });
+        return NextResponse.json({ error: err }, { status: 500 });
     }
 };
