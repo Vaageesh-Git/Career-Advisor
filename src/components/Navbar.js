@@ -7,9 +7,14 @@ import axios, { Axios } from "axios";
 import { useRouter } from "next/navigation";
 import { useMenu } from "@/app/context/menuContext";
 import { useAuth } from "@/app/context/authContext";
+import { useDataContext } from "@/app/context/aiDataContext";
+import { useQuestionAnswers } from "@/app/context/questionAnswersContext";
 
 export default function Navbar() {
   const router = useRouter();
+  const {setData} = useDataContext();
+  const { setAnswers } = useQuestionAnswers();
+
   const { loggedIn, setLoggedIn } = useAuth();
   const { menuOpen, setMenuOpen } = useMenu();
   const pathname = usePathname();
@@ -18,6 +23,9 @@ export default function Navbar() {
     try {
       const response = await axios.post('/api/logout');
       setLoggedIn(false)
+      setData(null)
+      setAnswers({})
+
       router.push('/')
     } catch(err){
       console.error(err)
