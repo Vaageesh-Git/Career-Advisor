@@ -26,7 +26,6 @@ export default function SignupPage() {
       const response = await axios.post('/api/login',formData)
       if (response?.status === 200){
         setLoggedIn(true)
-        console.log(response.data.hasCompletedOnboarding)
         if (response.data.hasCompletedOnboarding === true){
           router.push('/dashboard')
         } else {
