@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React,{useState,useEffect} from "react";
 import Image from "next/image";
 import { Edit, Mail, MapPin, Briefcase, Award } from "lucide-react";
 import ProgressChart from "@/components/ProgressChart";
@@ -9,7 +9,24 @@ import { useDataContext } from "../context/aiDataContext";
 
 export default function ProfilePage() {
   const { menuOpen } = useMenu();
-  const {data, setData} = useDataContext();
+  const {data} = useDataContext();
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    async function loadUser() {
+      const res = await fetch("/api/profile");
+      const data = await res.json();
+
+      if (data.user){
+        setUser(data.user);
+      } 
+    }
+
+    loadUser();
+  }, []);
+
+  if (!user || !data) return <p>Loading...</p>;
+  console.log(data)
 
   return (
     <div className="profile-page-main">
@@ -41,26 +58,15 @@ export default function ProfilePage() {
 
         <div className="profile-section">
           <h2>Skill Progress</h2>
-          {/* <ProgressChart /> */}
-        </div>
-
-        <div className="profile-section">
-          <h2>Your Badges</h2>
-          <div className="badges-container">
-            {user.badges.map((badge, idx) => (
-              <div className="badge" key={idx}>
-                <Award size={18} />
-                {badge}
-              </div>
-            ))}
-          </div>
+          <ProgressChart progress={data.progressInsights}/>
+          
         </div>
 
         <div className="profile-section">
           <h2>Core Skills</h2>
           <div className="skills-container">
-            {user.skills.map((skill, i) => (
-              <span key={i} className="skill-tag">{skill}</span>
+            {data.progressInsights.skills.map((skill, i) => (
+              <span key={i} className="skill-tag">{skill.name}</span>
             ))}
           </div>
         </div>

@@ -37,13 +37,13 @@ export async function POST(request) {
 
         const payload = {
             id : userData.id,
-            email : userData.email
+            email : userData.email,
+            name : userData.name
         }
 
         const secret = process.env.SECRET_KEY;
 
         const token = jwt.sign(payload,secret,{expiresIn : '1h'})
-        console.log(userData.hasCompletedOnboarding)
 
         const response = NextResponse.json({ success: true, hasCompletedOnboarding : userData.hasCompletedOnboarding },{status : 200});
 
