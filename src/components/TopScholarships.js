@@ -8,8 +8,8 @@ export default function TopScholarships({scholarships}){
         <div className="top-scholarships">            
             {
             scholarships.map((sch,idx)=>
-                <div className="top-scholarship-card">
-                    <div key={idx}>
+                <div key={idx} className="top-scholarship-card">
+                    <div>
                         <h2>{sch.name}</h2>
                         <p>{sch.description}</p>
                     </div>
