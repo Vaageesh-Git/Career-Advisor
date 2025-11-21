@@ -40,6 +40,8 @@ export default function SignupPage() {
         alert('User Does Not Exists.')
       } else if (err.response?.status === 409){
         alert('Invalid Crdentials')
+      } else {
+        alert("Internal DB Error")
       }
     }
   };
