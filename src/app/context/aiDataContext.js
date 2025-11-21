@@ -10,15 +10,20 @@ export function DataContextProvider({ children }) {
   const { loggedIn } = useAuth();
 
   useEffect(() => {
-    if (!loggedIn) {
-      return
+    if (loggedIn === null) return;
+
+    if (loggedIn === false) {
+      setData(null);
+      return;
     }
+
     async function load() {
       try {
         const res = await axios.get("/api/recommendations");
         setData(res.data);
       } catch (err) {
-        console.log("No recommendations yet (new user).");
+        console.log("No recommendations found or user is new.");
+        setData(null);
       }
     }
 

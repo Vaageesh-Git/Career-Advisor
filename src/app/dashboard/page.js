@@ -8,25 +8,27 @@ import TopScholarships from "@/components/TopScholarships";
 import MenuBar from "@/components/MenuBar";
 import { useMenu } from "../context/menuContext";
 import { useDataContext } from "../context/aiDataContext";
-import { useAuth } from "../context/authContext";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../context/authContext";
+import axios from "axios";
 
 export default function Dashboard() {
   const router = useRouter();
   const { menuOpen,setMenuOpen } = useMenu();
-  const { data } = useDataContext();
-  const { loggedIn } = useAuth();
-
-
+  const { data, setData } = useDataContext();
+  const {loggedIn} = useAuth()
   useEffect(() => {
-    if (loggedIn === false) {
-      router.push("/");
+    if (!loggedIn) return;
+    if (data) return;
+
+    async function fetchData() {
+      const res = await axios.get("/api/recommendations");
+      setData(res.data);
     }
-  }, [loggedIn, router]);
+    fetchData();
+  }, [loggedIn,data,setData]);
 
-  if (loggedIn === false) return null;
-
-  if (loggedIn === true && !data) {
+  if ( !data) {
     return <h2>Loading your personalized dashboard...</h2>;
   }
   return (
