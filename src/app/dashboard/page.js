@@ -7,14 +7,26 @@ import ProgressDashboard from "@/components/ProgressDashboard";
 import TopScholarships from "@/components/TopScholarships";
 import MenuBar from "@/components/MenuBar";
 import { useMenu } from "../context/menuContext";
-import axios from "axios";
 import { useDataContext } from "../context/aiDataContext";
+import { useAuth } from "../context/authContext";
+import { useRouter } from "next/navigation";
 
 export default function Dashboard() {
+  const router = useRouter();
   const { menuOpen,setMenuOpen } = useMenu();
   const { data } = useDataContext();
+  const { loggedIn } = useAuth();
 
-  if (!data) {
+
+  useEffect(() => {
+    if (loggedIn === false) {
+      router.push("/");
+    }
+  }, [loggedIn, router]);
+
+  if (loggedIn === false) return null;
+
+  if (loggedIn === true && !data) {
     return <h2>Loading your personalized dashboard...</h2>;
   }
   return (
