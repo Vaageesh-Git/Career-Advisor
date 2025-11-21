@@ -24,8 +24,9 @@ export default function HomePage() {
   useEffect(() => {
     async function auth() {
       const auth = await axios.get('/api/check-auth')
-      if (auth.data?.status === 200){
-        router.push('/dashboaard')
+      console.log(auth.status)
+      if (auth.status === 200){
+        router.push('/dashboard')
       }
     }
     auth()
