@@ -17,11 +17,11 @@ export default function Dashboard() {
   const { menuOpen } = useMenu();
   const { data } = useDataContext();
   const { loggedIn } = useAuth();
+  
+  useEffect(() => {
+    if (loggedIn === false) router.push("/");
+  }, [loggedIn]);
 
-  if (loggedIn === false) {
-    router.push("/");
-    return null;
-  }
 
   if (loggedIn === null) {
     return <h2>Checking authentication...</h2>;
