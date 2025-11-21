@@ -26,7 +26,10 @@ export default function Navbar() {
       setData(null)
       setAnswers({})
 
-      router.push('/')
+      setTimeout(() => {
+        router.push('/');
+      }, 50);
+
     } catch(err){
       console.error(err)
     }
