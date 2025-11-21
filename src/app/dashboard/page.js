@@ -9,12 +9,23 @@ import MenuBar from "@/components/MenuBar";
 import { useMenu } from "../context/menuContext";
 import { useDataContext } from "../context/aiDataContext";
 import { useRouter } from "next/navigation";
+import { useAuth } from "../context/authContext";
 
 
 export default function Dashboard() {
   const router = useRouter();
   const { menuOpen } = useMenu();
   const { data } = useDataContext();
+  const { loggedIn } = useAuth();
+
+  if (loggedIn === false) {
+    router.push("/");
+    return null;
+  }
+
+  if (loggedIn === null) {
+    return <h2>Checking authentication...</h2>;
+  }
 
   if ( !data) {
     return <h2>Loading your personalized dashboard...</h2>;
