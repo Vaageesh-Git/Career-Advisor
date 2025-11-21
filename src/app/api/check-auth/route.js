@@ -10,7 +10,7 @@ export async function GET(request) {
 
   try {
     await jwtVerify(token, new TextEncoder().encode(process.env.SECRET_KEY));
-    return NextResponse.json({ loggedIn: true });
+    return NextResponse.json({ loggedIn: true }, {status : 200});
   } catch (err) {
     return NextResponse.json({ loggedIn: false });
   }

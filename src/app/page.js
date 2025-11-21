@@ -4,8 +4,12 @@ import HomePageCard from "@/components/HomePageCard";
 import { useEffect, useState, useRef } from "react";
 import ProfileCard from "@/components/ProfileCard";
 import cards from "@/data/topFeaturesHomeCard";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+
 
 export default function HomePage() {
+  const router = useRouter();
   const [profiles, setProfiles] = useState([]);
   const [careerCount, setCareerCount] = useState(0);
   const [successRateCount, setSuccessRateCount] = useState(0);
@@ -16,6 +20,16 @@ export default function HomePage() {
   const statsRef = useRef(null);       
   const counterStarted = useRef(false);
   const footerRef = useRef(null);
+
+  useEffect(() => {
+    async function auth() {
+      const auth = await axios.get('/api/check-auth')
+      if (auth.data?.status === 200){
+        router.push('/dashboaard')
+      }
+    }
+    auth()
+  },[])
 
   useEffect(() => {
     fetch('/api/profiles')
