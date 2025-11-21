@@ -9,24 +9,12 @@ import MenuBar from "@/components/MenuBar";
 import { useMenu } from "../context/menuContext";
 import { useDataContext } from "../context/aiDataContext";
 import { useRouter } from "next/navigation";
-import { useAuth } from "../context/authContext";
-import axios from "axios";
+
 
 export default function Dashboard() {
   const router = useRouter();
-  const { menuOpen,setMenuOpen } = useMenu();
-  const { data, setData } = useDataContext();
-  const {loggedIn} = useAuth()
-  useEffect(() => {
-    if (!loggedIn) return;
-    if (data) return;
-
-    async function fetchData() {
-      const res = await axios.get("/api/recommendations");
-      setData(res.data);
-    }
-    fetchData();
-  }, [loggedIn,data,setData]);
+  const { menuOpen } = useMenu();
+  const { data } = useDataContext();
 
   if ( !data) {
     return <h2>Loading your personalized dashboard...</h2>;

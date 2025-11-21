@@ -21,7 +21,7 @@ export default function Navbar() {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.post('/api/logout');
+      await axios.post("/api/logout", {}, { withCredentials: true });
       setLoggedIn(false)
       setData(null)
       setAnswers({})
@@ -69,7 +69,7 @@ export default function Navbar() {
             <Link href="/login"><button>Login</button></Link>
           ) :
           (
-            <Link href="/"><button onClick={handleLogout}>Logout</button></Link>
+           <button onClick={handleLogout}>Logout</button>
           )
         }
       </div>
