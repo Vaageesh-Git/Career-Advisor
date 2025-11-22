@@ -29,7 +29,7 @@ export default function SignupPage() {
         setData(null);
         if (response.data.hasCompletedOnboarding === true){
           setLoggedIn(true)
-          router.push('/dashboard')
+          window.location.href = "/dashboard";
         } else {
           router.push('/questionare')
         }

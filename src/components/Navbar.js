@@ -4,14 +4,12 @@ import Image from "next/image";
 import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
 import axios, { Axios } from "axios";
-import { useRouter } from "next/navigation";
 import { useMenu } from "@/app/context/menuContext";
 import { useAuth } from "@/app/context/authContext";
 import { useDataContext } from "@/app/context/aiDataContext";
 import { useQuestionAnswers } from "@/app/context/questionAnswersContext";
 
 export default function Navbar() {
-  const router = useRouter();
   const {setData} = useDataContext();
   const { setAnswers } = useQuestionAnswers();
 
@@ -27,7 +25,7 @@ export default function Navbar() {
       setAnswers({})
 
       setTimeout(() => {
-        router.push('/');
+        window.location.href = "/";
       }, 50);
 
     } catch(err){

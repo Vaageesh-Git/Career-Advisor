@@ -3,12 +3,10 @@ import { useState } from "react";
 import { questionsOptions } from "../../data/questions";
 import { useQuestionAnswers } from "../context/questionAnswersContext";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { useAuth } from "../context/authContext";
 import { useDataContext } from "../context/aiDataContext";
 
 export default function Questionare() {
-  const router = useRouter();
   const {setData} = useDataContext();
   const [questionNumber, setQuestionNumber] = useState(0);
   const { answers, setAnswers } = useQuestionAnswers();
@@ -44,7 +42,7 @@ const handleSubmit = async () => {
     const rec = await axios.get("/api/recommendations");
     setData(rec.data);
 
-    router.push("/dashboard");
+    window.location.href = "/dashboard";
 
   } catch (err) {
     alert(
