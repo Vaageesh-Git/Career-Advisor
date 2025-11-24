@@ -1,11 +1,11 @@
 "use client"; 
-import Image from "next/image";
 import HomePageCard from "@/components/HomePageCard";
 import { useEffect, useState, useRef } from "react";
 import ProfileCard from "@/components/ProfileCard";
 import cards from "@/data/topFeaturesHomeCard";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import { Link } from "lucide-react";
 
 
 export default function HomePage() {
@@ -111,10 +111,21 @@ export default function HomePage() {
   return (
     <div className="home-container">
       <div className="homepage-hero">
-        <Image src="/hero_img.png" alt="cover_image" width={1330} height={500}
-            style={{ width: "100%"}}
-        />
+        <video 
+          autoPlay 
+          loop 
+          muted 
+          playsInline
+          className="hero-video"
+        >
+          <source src="/hero-video.mp4" type="video/mp4" />
+        </video>
+
+          <div className="hero-content">
+            <a href="/signup" className="get-started-btn">Get Started</a>
+          </div>
       </div>
+
       <div className="homepage-cards-container">
           {cards.map((i)=>
             <HomePageCard
@@ -171,7 +182,8 @@ export default function HomePage() {
         <h1>
           {footerCtaText}
         </h1>
-        <p>Join thousands of professionals who have found their perfect career path with CareerNavigator.</p>
+        <p style={{marginBottom : "3em"}}>Join thousands of professionals who have found their perfect career path with CareerNavigator.</p>
+        <a href="/signup" className="get-started-btn">Get Started</a>
       </div>
     </div>
   );
