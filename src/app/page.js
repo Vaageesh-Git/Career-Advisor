@@ -138,30 +138,54 @@ export default function HomePage() {
       </div>
 
       <div className="stats" ref={statsRef}>
-        <div className="stats-item">
-          <h3>{careerCount} +</h3>
-          <p>Careers Explored</p>
+        <div className="full-stats">
+          <div className="stats-item">
+            <span className="left-quotes">"</span>
+            <p>Helping you uncover the career path that truly fits who you are not just what you do.</p>
+            <span className="right-quotes">"</span>
+          </div>
+          <div className="count-styles">
+            <h3>{careerCount} +</h3>
+          </div>
         </div>
 
-        <div className="stats-item">
-          <h3>{successRateCount} +</h3>
-          <p>Success Rate</p>
+        <div className="full-stats">
+          <div className="stats-item">
+            <span className="left-quotes">"</span>
+            <p>Real stories, real results empowering thousands to turn ambition into measurable success.</p>
+            <span className="right-quotes">"</span>
+          </div>
+          <div className="count-styles">
+              <h3>{successRateCount} +</h3>
+          </div>
         </div>
 
-        <div className="stats-item">
-          <h3>{jobOpportunitiesCount} +</h3>
-          <p>Job Opportunities</p>
+        <div className="full-stats">
+          <div className="stats-item">
+            <span className="left-quotes">"</span>
+            <p>Connecting you with roles that match your skills, passions, and the future you want to build.</p>
+            <span className="right-quotes">"</span>
+          </div>
+          <div className="count-styles">
+            <h3>{jobOpportunitiesCount} +</h3>
+          </div>
         </div>
 
-        <div className="stats-item">
-          <h3>{scholarshipsCount} +</h3>
-          <p>Scholarships</p>
+        <div className="full-stats">
+          <div className="stats-item">
+            <span className="left-quotes">"</span>
+            <p>Bringing global scholarship opportunities to your fingertips, so nothing stands between you and your dreams.</p>
+            <span className="right-quotes">"</span>
+          </div>
+          <div className="count-styles">
+            <h3>{scholarshipsCount} +</h3>
+          </div>
         </div>
 
       </div>
 
       <div className="top-profiles-container">
-        <h2 className="section-title" style={{marginLeft: "2rem"}}>Our Top Successor</h2>
+        <h2 className="section-title" style={{marginLeft: "2rem", background: "black", width : "13rem", padding : "1em" , borderRadius : "20px" , color : "white"}}>Our Top Stories</h2>
         <div className="profiles-list">
           <div className="profiles-scroller">
             {profiles.map((user) => (
