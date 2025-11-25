@@ -139,49 +139,49 @@ export default function HomePage() {
 
       <div className="stats" ref={statsRef}>
         <div className="full-stats">
-          <div className="stats-item">
-            <span className="left-quotes">"</span>
-            <p>Helping you uncover the career path that truly fits who you are not just what you do.</p>
-            <span className="right-quotes">"</span>
+            <div className="stats-item">
+              <span className="left-quotes">&ldquo;</span>
+              <p>Helping you uncover the career path that truly fits who you are not just what you do.</p>
+              <span className="right-quotes">&rdquo;</span>
+            </div>
+            <div className="count-styles">
+              <h3>{careerCount} +</h3>
+            </div>
           </div>
-          <div className="count-styles">
-            <h3>{careerCount} +</h3>
-          </div>
-        </div>
 
-        <div className="full-stats">
-          <div className="stats-item">
-            <span className="left-quotes">"</span>
-            <p>Real stories, real results empowering thousands to turn ambition into measurable success.</p>
-            <span className="right-quotes">"</span>
-          </div>
-          <div className="count-styles">
+          <div className="full-stats">
+            <div className="stats-item">
+              <span className="left-quotes">&ldquo;</span>
+              <p>Real stories, real results empowering thousands to turn ambition into measurable success.</p>
+              <span className="right-quotes">&rdquo;</span>
+            </div>
+            <div className="count-styles">
               <h3>{successRateCount} +</h3>
+            </div>
           </div>
-        </div>
 
-        <div className="full-stats">
-          <div className="stats-item">
-            <span className="left-quotes">"</span>
-            <p>Connecting you with roles that match your skills, passions, and the future you want to build.</p>
-            <span className="right-quotes">"</span>
+          <div className="full-stats">
+            <div className="stats-item">
+              <span className="left-quotes">&ldquo;</span>
+              <p>Connecting you with roles that match your skills, passions, and the future you want to build.</p>
+              <span className="right-quotes">&rdquo;</span>
+            </div>
+            <div className="count-styles">
+              <h3>{jobOpportunitiesCount} +</h3>
+            </div>
           </div>
-          <div className="count-styles">
-            <h3>{jobOpportunitiesCount} +</h3>
-          </div>
-        </div>
 
-        <div className="full-stats">
-          <div className="stats-item">
-            <span className="left-quotes">"</span>
-            <p>Bringing global scholarship opportunities to your fingertips, so nothing stands between you and your dreams.</p>
-            <span className="right-quotes">"</span>
+          <div className="full-stats">
+            <div className="stats-item">
+              <span className="left-quotes">&ldquo;</span>
+              <p>Bringing global scholarship opportunities to your fingertips, so nothing stands between you and your dreams.</p>
+              <span className="right-quotes">&rdquo;</span>
+            </div>
+            <div className="count-styles">
+              <h3>{scholarshipsCount} +</h3>
+            </div>
           </div>
-          <div className="count-styles">
-            <h3>{scholarshipsCount} +</h3>
-          </div>
-        </div>
-
+  
       </div>
 
       <div className="top-profiles-container">
