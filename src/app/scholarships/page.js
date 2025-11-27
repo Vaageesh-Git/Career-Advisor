@@ -1,19 +1,40 @@
 "use client";
-import React from "react";
+import React,{useState} from "react";
 import { Search, Globe, GraduationCap, Star } from "lucide-react";
-import { useMenu } from "../context/menuContext";
 import MenuBar from "@/components/MenuBar";
 import { useDataContext } from "../context/aiDataContext";
+import axios from "axios";
 
 export default function ScholarshipsPage() {
   const {data} = useDataContext();
-  const { menuOpen } = useMenu();
+  const [searchInput, setSearchInput] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+
   if (!data) {
     return <h2>Loading scholarships...</h2>;
   }
 
   const scholarships = data.scholarshipMatches || [];
   const topPicks = data.topPicks || [];
+
+  const handleSearchInput = (e) => {
+    if (e.target.value === ""){
+      setSearchResults([])
+    }
+    setSearchInput(e.target.value)
+  };
+
+  const handleSearch = async () => {
+    try {
+      const response = await axios.get(`/api/scholarship-search?q=${encodeURIComponent(searchInput)}`);
+
+      setSearchResults(response.data);
+
+    } catch (err) {
+      console.error("Search error:", err);
+      alert("Internal Server Error")
+    }
+  };
 
   return (
     <div className="scholarships-page-main">
@@ -24,11 +45,33 @@ export default function ScholarshipsPage() {
           <h1>Find the Best Scholarships for You 🎓</h1>
           <p>Explore global opportunities tailored to your career goals.</p>
           <div className="search-section">
-            <input type="text" placeholder="Search by field, country or name..." />
-            <button><Search size={20}/> Search</button>
+            <input type="text" placeholder="Search by field, country or name..." onChange={handleSearchInput}/>
+            <button onClick={handleSearch}><Search size={20}/></button>
           </div>
         </section>
 
+        {
+          searchResults.length > 0 &&
+          <section className="featured-scholarships">
+            <h2>Search Results</h2>
+            <div className="scholarship-grid">
+              {searchResults.map((sch, idx) => (
+                <div className="scholarship-card" key={idx}>
+                  <div className="card-header">
+                    <GraduationCap size={22} color="#004aad"/>
+                    <h3>{sch.name}</h3>
+                  </div>
+                  <p>{sch.description}</p>
+                  <div className="card-footer">
+                    <span><Globe size={16}/> {sch.country}</span>
+                    <span>⏰ {sch.deadline}</span>
+                  </div>
+                  <button>Apply Now</button>
+                </div>
+              ))}
+            </div>
+          </section>
+        }
 
         <section className="featured-scholarships">
           <h2>🌟 Featured Scholarships</h2>

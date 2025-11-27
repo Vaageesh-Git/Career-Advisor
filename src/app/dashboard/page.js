@@ -34,10 +34,6 @@ export default function Dashboard() {
     <div className="dashboard-main">
       <MenuBar/>
       <div className={`dashboard-content ${menuOpen ? "" : "expanded"}`}>
-        <div className="search-container">
-          <input placeholder="Search Job Here...." className="search-bar"/>
-          <button className="search-btn"><Search size={20}/></button>
-        </div>
 
         <h1>Recommended Jobs...</h1>
 
