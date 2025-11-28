@@ -16,16 +16,14 @@ export default function Footer() {
           <ul>
             <li><Link href="/">Home</Link></li>
             <li><Link href="/dashboard">Dashboard</Link></li>
-            <li><Link href="/careers">Careers</Link></li>
             <li><Link href="/scholarships">Scholarships</Link></li>
-            <li><Link href="/advice">Career Advice</Link></li>
+            <li><Link href="/aiGuidance">Career Advice</Link></li>
           </ul>
         </div>
         <div className="footer-section support">
           <h3>Support</h3>
           <ul>
-            <li><Link href="/contact">Contact Us</Link></li>
-            <li><Link href="/faq">FAQs</Link></li>
+            <li><Link href="/contactUs">Contact Us</Link></li>
             <li><Link href="/privacy">Privacy Policy</Link></li>
             <li><Link href="/terms">Terms of Service</Link></li>
           </ul>
