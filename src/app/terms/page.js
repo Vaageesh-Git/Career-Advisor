@@ -16,9 +16,7 @@ export default function TermsOfService() {
 
       <section>
         <h2>2. Use of the Platform</h2>
-        <p>
-          You may use CareerNav only for lawful purposes. You agree not to:
-        </p>
+        <p>You may use CareerNav only for lawful purposes. You agree not to:</p>
         <ul>
           <li>Use the platform in ways that damage or disrupt its functioning.</li>
           <li>Create multiple accounts to exploit features.</li>
@@ -58,7 +56,7 @@ export default function TermsOfService() {
         <ul>
           <li>Reverse engineering or tampering with the platform.</li>
           <li>Uploading harmful files or malicious code.</li>
-          <li>Using data from the platform for commercial resale.</li>
+          <li>Using platform data for commercial resale.</li>
         </ul>
       </section>
 
@@ -73,9 +71,10 @@ export default function TermsOfService() {
       <section>
         <h2>8. Limitation of Liability</h2>
         <p>
-          CareerNav is provided “as-is.” We do not guarantee uninterrupted or error-free
-          service. We are not liable for any direct or indirect damages arising from your
-          use of the platform.
+          CareerNav is provided &ldquo;as-is&rdquo;. We do not guarantee uninterrupted 
+          or error-free service. To the maximum extent permitted by law, CareerNav is 
+          not liable for any direct or indirect damages resulting from your use of the 
+          platform.
         </p>
       </section>
 
@@ -90,7 +89,9 @@ export default function TermsOfService() {
       <section>
         <h2>10. Contact Us</h2>
         <p>If you have any questions about these Terms, reach out to us at:</p>
-        <p className="contact-line"><strong>Email:</strong> contact@career123</p>
+        <p className="contact-line">
+          <strong>Email:</strong> contact@career123.com
+        </p>
       </section>
     </div>
   );

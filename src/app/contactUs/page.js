@@ -8,7 +8,7 @@ export default function ContactPage() {
     <div className="contact-page">
       <h1>Contact Us</h1>
       <p className="subtitle">
-        We're here to help! Reach out to us anytime.
+        We&apos;re here to help! Reach out to us anytime.
       </p>
 
       <div className="contact-container">
@@ -27,12 +27,12 @@ export default function ContactPage() {
         <div className="contact-card">
           <MapPin size={30} color="#007bff" />
           <h3>Address</h3>
-          <p>NST - India </p>
+          <p>NST - India</p>
         </div>
       </div>
 
       <p className="footer-note">
-        Our team will respond within 24-48 hours.  
+        Our team will respond within 24-48 hours.
         Thank you for reaching out!
       </p>
     </div>
