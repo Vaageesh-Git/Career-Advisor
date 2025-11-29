@@ -1845,7 +1845,7 @@ li {
   color: rgb(0, 0, 0);
 }
 
-/* ---- CIRCULAR RING LOADER ---- */
+
 .ring {
   width: 120px;
   height: 120px;
@@ -1867,7 +1867,6 @@ li {
   }
 }
 
-/* ---- BOTTOM RUNNING LINE ---- */
 .bottom-progress-bar {
   width: 230px;
   height: 4px;
@@ -1897,7 +1896,6 @@ li {
   }
 }
 
-/* ---- TEXT ---- */
 .loader-text {
   font-size: 1rem;
   opacity: 0.85;
@@ -1907,4 +1905,40 @@ li {
 @keyframes fadeText {
   0% { opacity: 0.4; }
   100% { opacity: 1; }
+}
+
+
+.loader-btn {
+  background: #007bff;
+  color: white;
+  padding: 0.8em 2.2em;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transition: background 0.3s ease, opacity 0.3s;
+}
+
+.loader-btn.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }

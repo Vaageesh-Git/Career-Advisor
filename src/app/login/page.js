@@ -10,6 +10,7 @@ import { useDataContext } from "../context/aiDataContext";
 export default function SignupPage() {
   const { setLoggedIn } = useAuth();
   const { setData } = useDataContext();
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
@@ -23,6 +24,7 @@ export default function SignupPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try{
       const response = await axios.post('/api/login',formData)
       if (response?.status === 200){
@@ -40,9 +42,13 @@ export default function SignupPage() {
         alert('User Does Not Exists.')
       } else if (err.response?.status === 409){
         alert('Invalid Crdentials')
+      } else if (err.response?.status === 401) {
+        alert("All Fields Are Required.")
       } else {
         alert("Internal DB Error")
       }
+    } finally{
+      setLoading(false)
     }
   };
 
@@ -89,8 +95,12 @@ export default function SignupPage() {
             />
           </div>
 
-          <button type="submit" className="signup-btn">
-            Log In
+          <button type="submit"
+              className={loading ? `loader-btn loading` : "signup-btn"}
+              onClick={handleSubmit}
+              disabled={loading}
+            >
+              {loading ? <span className="btn-spinner"></span> : "Log In"}
           </button>
 
           <p className="login-link">

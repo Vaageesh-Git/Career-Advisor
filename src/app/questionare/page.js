@@ -10,6 +10,7 @@ export default function Questionare() {
   const {setData} = useDataContext();
   const [questionNumber, setQuestionNumber] = useState(0);
   const { answers, setAnswers } = useQuestionAnswers();
+  const [loading, setLoading] = useState(false);
   const {setLoggedIn} = useAuth();
   const handleOptionChange = (option) => {
     setAnswers({ ...answers, [questionNumber]: option });
@@ -35,6 +36,7 @@ const handleSubmit = async () => {
   }
 
   try {
+    setLoading(true)
     await axios.post("/api/gemini", { answers });
 
     setLoggedIn(true);
@@ -50,6 +52,8 @@ const handleSubmit = async () => {
       err.message ||
       "Something went wrong"
     );
+  } finally{
+    setLoading(false)
   }
 
 };
@@ -98,7 +102,15 @@ const handleSubmit = async () => {
             Next
             </button>
             :
-            <button type="button" onClick={handleSubmit}>Submit</button>
+            <button
+              type="button"
+              className={`loader-btn ${loading ? "loading" : ""}`}
+              onClick={handleSubmit}
+              disabled={loading}
+            >
+              {loading ? <span className="btn-spinner"></span> : "Submit"}
+            </button>
+
           }
         </div>
       </form>

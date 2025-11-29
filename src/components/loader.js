@@ -9,7 +9,7 @@ export default function Loader() {
         <div className="progress-line"></div>
       </div>
 
-      <h2 className="loader-text">Loading your personalized dashboard...</h2>
+      <h2 className="loader-text">Loading.....</h2>
     </div>
   );
 }

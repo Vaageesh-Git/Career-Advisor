@@ -6,6 +6,7 @@ import axios from "axios";
 
 export default function SignupPage() {
   const router = useRouter();
+  const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -18,6 +19,7 @@ export default function SignupPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
     try{
       const response = await axios.post('/api/signup',formData)
       if (response?.status === 201){
@@ -25,11 +27,12 @@ export default function SignupPage() {
       }
       router.push('/login')
     } catch (err) {
-      console.error("Axios Error:", err.response?.data || err.message);
       if (err.response?.status === 409){
         alert('User Already Exists')
       }
       router.push('/login')
+    } finally{
+      setLoading(false)
     }
   };
 
@@ -89,8 +92,12 @@ export default function SignupPage() {
             />
           </div>
 
-          <button type="submit" className="signup-btn">
-            Sign Up
+          <button type="submit"
+              className={loading ? `loader-btn loading` : "signup-btn"}
+              onClick={handleSubmit}
+              disabled={loading}
+            >
+              {loading ? <span className="btn-spinner"></span> : "Sign Up"}
           </button>
 
           <p className="login-link">
