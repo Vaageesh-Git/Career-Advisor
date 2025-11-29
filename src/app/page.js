@@ -5,8 +5,7 @@ import ProfileCard from "@/components/ProfileCard";
 import cards from "@/data/topFeaturesHomeCard";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { Link } from "lucide-react";
-
+import Loader from "@/components/loader";
 
 export default function HomePage() {
   const router = useRouter();
@@ -17,6 +16,7 @@ export default function HomePage() {
   const [scholarshipsCount, setScholarshipsCount] = useState(0);
   const footerText = "Ready to Transform Your Career?";
   const [footerCtaText, setFooterCtaText] = useState("");
+  const [videoLoaded,setVideoLoaded] = useState(false);
   const statsRef = useRef(null);       
   const counterStarted = useRef(false);
   const footerRef = useRef(null);
@@ -24,9 +24,9 @@ export default function HomePage() {
   useEffect(() => {
     async function auth() {
       const auth = await axios.get('/api/check-auth')
-      console.log(auth.status)
       if (auth.status === 200){
         router.push('/dashboard')
+        return;
       }
     }
     auth()
@@ -111,12 +111,14 @@ export default function HomePage() {
   return (
     <div className="home-container">
       <div className="homepage-hero">
+        {!videoLoaded && <Loader />}
         <video 
           autoPlay 
           loop 
           muted 
           playsInline
           className="hero-video"
+          onLoadedData={() => setVideoLoaded(true)}
         >
           <source src="/hero-video.mp4" type="video/mp4" />
         </video>

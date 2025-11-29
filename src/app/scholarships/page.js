@@ -4,6 +4,7 @@ import { Search, Globe, GraduationCap, Star } from "lucide-react";
 import MenuBar from "@/components/MenuBar";
 import { useDataContext } from "../context/aiDataContext";
 import axios from "axios";
+import Loader from "@/components/loader";
 
 export default function ScholarshipsPage() {
   const {data} = useDataContext();
@@ -11,7 +12,7 @@ export default function ScholarshipsPage() {
   const [searchResults, setSearchResults] = useState([]);
 
   if (!data) {
-    return <h2>Loading scholarships...</h2>;
+    return <Loader/>;
   }
 
   const scholarships = data.scholarshipMatches || [];

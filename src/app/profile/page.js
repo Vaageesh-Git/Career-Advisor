@@ -1,14 +1,15 @@
 "use client";
 import React,{useState,useEffect, use} from "react";
 import Image from "next/image";
-import { Edit, Mail, MapPin, Briefcase, Award } from "lucide-react";
+import { Edit, Mail, MapPin } from "lucide-react";
 import ProgressChart from "@/components/ProgressChart";
 import MenuBar from "@/components/MenuBar";
 import { useDataContext } from "../context/aiDataContext";
 import axios from "axios";
+import Loader from "@/components/loader";
 
 export default function ProfilePage() {
-  const {data, setData} = useDataContext();
+  const {data} = useDataContext();
   const [user, setUser] = useState(null);
   const [editOpen, setEditOpen] = useState(false);
   const [emailInput, setEmailInput] = useState("");
@@ -67,7 +68,9 @@ const handleEmailChnage = async () => {
     loadUser();
   }, []);
 
-  if (!user || !data) return <p>Loading...</p>;
+  if (!user || !data){
+    return <Loader/>
+  }
 
   return (
     <div className="profile-page-main">

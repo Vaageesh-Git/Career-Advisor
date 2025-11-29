@@ -10,6 +10,7 @@ import { useMenu } from "../context/menuContext";
 import { useDataContext } from "../context/aiDataContext";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/authContext";
+import Loader from "@/components/loader";
 
 
 export default function Dashboard() {
@@ -24,12 +25,13 @@ export default function Dashboard() {
 
 
   if (loggedIn === null) {
-    return <h2>Checking authentication...</h2>;
+    return <Loader/>;
   }
 
   if ( !data) {
-    return <h2>Loading your personalized dashboard...</h2>;
+    return <Loader/>
   }
+
   return (
     <div className="dashboard-main">
       <MenuBar/>
