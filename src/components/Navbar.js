@@ -3,35 +3,15 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu } from "lucide-react";
 import { usePathname } from "next/navigation";
-import axios, { Axios } from "axios";
 import { useMenu } from "@/app/context/menuContext";
 import { useAuth } from "@/app/context/authContext";
-import { useDataContext } from "@/app/context/aiDataContext";
-import { useQuestionAnswers } from "@/app/context/questionAnswersContext";
 
 export default function Navbar() {
-  const {setData} = useDataContext();
-  const { setAnswers } = useQuestionAnswers();
+
 
   const { loggedIn, setLoggedIn } = useAuth();
   const { menuOpen, setMenuOpen } = useMenu();
   const pathname = usePathname();
-
-  const handleLogout = async () => {
-    try {
-      await axios.post("/api/logout", {}, { withCredentials: true });
-      setLoggedIn(false)
-      setData(null)
-      setAnswers({})
-
-      setTimeout(() => {
-        window.location.href = "/";
-      }, 50);
-
-    } catch(err){
-      console.error(err)
-    }
-  };
 
   return (
     <nav className="navbar">
@@ -65,10 +45,7 @@ export default function Navbar() {
           ) : pathname == '/signup' ? 
           (
             <Link href="/login"><button>Login</button></Link>
-          ) :
-          (
-           <button onClick={handleLogout}>Logout</button>
-          )
+          ) : null
         }
       </div>
     </nav>

@@ -1975,3 +1975,12 @@ li {
     transform: rotate(360deg);
   }
 }
+
+.signout-cta{
+  width: 7em;
+  height: 3em;
+  color: red;
+  background: none;
+  font-weight: bold;
+  border-radius: 10px;
+}

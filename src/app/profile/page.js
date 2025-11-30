@@ -7,12 +7,18 @@ import MenuBar from "@/components/MenuBar";
 import { useDataContext } from "../context/aiDataContext";
 import axios from "axios";
 import Loader from "@/components/loader";
+import { useQuestionAnswers } from "@/app/context/questionAnswersContext";
+import { useAuth } from "../context/authContext";
+
 
 export default function ProfilePage() {
-  const {data} = useDataContext();
+  const {data,setData} = useDataContext();
   const [user, setUser] = useState(null);
   const [editOpen, setEditOpen] = useState(false);
   const [emailInput, setEmailInput] = useState("");
+  const { setAnswers } = useQuestionAnswers();
+  const { loggedIn, setLoggedIn } = useAuth();
+
 
   const handleEmailInput = (e) => {
     setEmailInput(e.target.value)
@@ -21,6 +27,22 @@ export default function ProfilePage() {
   const handleEdit = () => {
     setEditOpen(!editOpen)
   }
+
+  const handleLogout = async () => {
+    try {
+      await axios.post("/api/logout", {}, { withCredentials: true });
+      setLoggedIn(false)
+      setData(null)
+      setAnswers({})
+
+      setTimeout(() => {
+        window.location.href = "/";
+      }, 50);
+
+    } catch(err){
+      console.error(err)
+    }
+  };
 
 const handleEmailChnage = async () => {
   if (emailInput === "") {
@@ -131,6 +153,7 @@ const handleEmailChnage = async () => {
             <li>📈 Improved problem-solving skills by 40%</li>
           </ul>
         </div>
+      <button onClick={handleLogout} className="signout-cta">Sign Out</button>
       </div>
     </div>
   );
