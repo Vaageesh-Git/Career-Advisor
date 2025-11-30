@@ -89,7 +89,7 @@ button:hover{
 
   .nav-div{
     font-size: small;
-    margin-right: 0.5em;
+    margin-right: 1em;
   }
 
   .nav-ctas button {
@@ -100,7 +100,6 @@ button:hover{
     color: rgb(0, 0, 0);
     font-weight: bold;
   }
-
 
 }
 
@@ -1304,6 +1303,16 @@ Image{
   padding-bottom: 1.5rem;
 }
 
+@media (max-width: 743px) {
+  .profile-header{
+    display: block;
+    align-items: center;
+    gap: 2rem;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 1.5rem;
+  }
+}
+
 .profile-avatar {
   position: relative;
 }
@@ -1432,9 +1441,6 @@ Image{
   display: flex;
   overflow-x: hidden;
 }
-
-
-
 
 .login-page {
   min-height: 100vh;
