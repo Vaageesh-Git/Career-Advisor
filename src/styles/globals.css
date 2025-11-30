@@ -72,9 +72,36 @@ button:hover{
 }
 
 @media (max-width: 768px) {
-  .nav-links {
-    display: none;
+  .navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1em 2em;
+    background: #031429;
+    color: white;
+    font-size: 1.1rem;
+    position: fixed;
+    top: 0;         
+    width: 100%;
+    z-index: 1000;
+    padding-left: 1.2em;
   }
+
+  .nav-div{
+    font-size: small;
+    margin-right: 0.5em;
+  }
+
+  .nav-ctas button {
+    background-color: #ffffff;
+    height: 2.0rem;
+    width: 5em;
+    border-radius: 20px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+  }
+
+
 }
 
 /* Footer */
