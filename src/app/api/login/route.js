@@ -43,9 +43,19 @@ export async function POST(request) {
 
         const secret = process.env.SECRET_KEY;
 
-        const token = jwt.sign(payload,secret,{expiresIn : '1h'})
+        const token = jwt.sign(payload, secret, { expiresIn : '1d' });
 
-        const response = NextResponse.json({ success: true, hasCompletedOnboarding : userData.hasCompletedOnboarding },{status : 200});
+
+        const refreshToken = jwt.sign(
+            { id: userData.id },
+            process.env.REFRESH_KEY,
+            { expiresIn: "7d" }
+        );
+
+        const response = NextResponse.json(
+            { success: true, hasCompletedOnboarding : userData.hasCompletedOnboarding },
+            { status : 200 }
+        );
 
         response.cookies.set("token", token, {
             httpOnly: true,
@@ -53,6 +63,14 @@ export async function POST(request) {
             sameSite: "strict",
             path: "/",
             maxAge: 60 * 60 * 24
+        });
+
+        response.cookies.set("refreshToken", refreshToken, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "strict",
+            path: "/",
+            maxAge: 60 * 60 * 24 * 7
         });
 
         return response;
