@@ -10,10 +10,8 @@ export default function ProgressDashboard({insights,learningPaths}) {
   return (
     <div className="progress-dashboard">
       
-
       <h2 className="progress-title">Your Progress Overview</h2>
 
-      {/* Circular Progress */}
       <div className="circular-progress">
         <CircularProgressbar
           value={overallProgress}
@@ -28,7 +26,6 @@ export default function ProgressDashboard({insights,learningPaths}) {
         />
       </div>
 
-      {/* Skill Bars */}
       <div className="skills-section">
         <h3 className="skills-title">Skill Breakdown</h3>
         {skills.map((skill, idx) => (

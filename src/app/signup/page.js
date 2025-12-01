@@ -49,7 +49,7 @@ export default function SignupPage() {
       </div>
 
       <div className="signup-form">
-        <h1>Create Your Account 🚀</h1>
+        <h1>Create Your Account</h1>
         <p>Join CareerNav and take your career to the next level.</p>
 
         <form onSubmit={handleSubmit}>

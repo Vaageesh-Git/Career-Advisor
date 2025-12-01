@@ -65,7 +65,7 @@ export default function SignupPage() {
       </div>
 
       <div className="signup-form">
-        <h1>Login 🚀</h1>
+        <h1>Login</h1>
 
         <form onSubmit={handleSubmit}>
 

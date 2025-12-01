@@ -68,8 +68,6 @@ export async function POST(request) {
             }
         })
 
-        console.log(updatedUser)
-
         return NextResponse.json(json);
 
     } catch(err){
