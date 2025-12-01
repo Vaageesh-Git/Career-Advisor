@@ -18,7 +18,14 @@ export default function ProfilePage() {
   const [emailInput, setEmailInput] = useState("");
   const { setAnswers } = useQuestionAnswers();
   const { loggedIn, setLoggedIn } = useAuth();
-
+  const [experiences, setExperiences] = useState([]);
+  const [showExpModal, setShowExpModal] = useState(false);
+  const [role, setRole] = useState("");
+  const [company, setCompany] = useState("");
+  const [desc, setDesc] = useState("");
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+  const [editingExp, setEditingExp] = useState(null);
 
   const handleEmailInput = (e) => {
     setEmailInput(e.target.value)
@@ -59,6 +66,75 @@ export default function ProfilePage() {
       alert("Internal Error")
     }
   }
+
+  const handleAddExperience = async () => {
+    const payload = {
+      email: user.email,
+      role,
+      company,
+      description: desc,
+      startDate,
+      endDate
+    };
+
+    await axios.post("/api/experience", payload);
+
+    const expRes = await axios.get(`/api/experience?email=${user.email}`);
+    setExperiences(expRes.data.experiences);
+
+    setShowExpModal(false);
+  };
+
+  const openEditModal = (exp) => {
+    setEditingExp(exp);
+    setRole(exp.role);
+    setCompany(exp.company);
+    setDesc(exp.description);
+    setStartDate(exp.startDate.slice(0, 10));
+    setEndDate(exp.endDate ? exp.endDate.slice(0, 10) : "");
+    setShowExpModal(true);
+  };
+
+  const handleUpdateExperience = async () => {
+    const payload = {
+      email: user.email,
+      expId: editingExp.id,
+      role,
+      company,
+      description: desc,
+      startDate,
+      endDate
+    };
+
+    await axios.patch("/api/experience", payload);
+
+    const expRes = await axios.get(`/api/experience?email=${user.email}`);
+    setExperiences(expRes.data.experiences);
+
+    setEditingExp(null);
+    setShowExpModal(false);
+  };
+
+  const handleDeleteExperience = async (expId) => {
+    const confirmed = window.confirm("Delete this experience?");
+    if (!confirmed) return;
+
+    await axios.delete("/api/experience", {
+      data: { email: user.email, expId }
+    });
+
+    const expRes = await axios.get(`/api/experience?email=${user.email}`);
+    setExperiences(expRes.data.experiences);
+
+
+    setEditingExp(null);
+    setRole("");
+    setCompany("");
+    setDesc("");
+    setStartDate("");
+    setEndDate("");
+    setShowExpModal(false);
+  };
 
   const handleLogout = async () => {
     try {
@@ -114,9 +190,12 @@ const handleEmailChnage = async () => {
       const res = await fetch("/api/profile");
       const data = await res.json();
 
-      if (data.user){
-        setUser(data.user);
-      } 
+      if (data.user) {
+          setUser(data.user);
+
+          const expRes = await axios.get(`/api/experience?email=${data.user.email}`);
+          setExperiences(expRes.data.experiences);
+      }
     }
 
     loadUser();
@@ -176,6 +255,68 @@ const handleEmailChnage = async () => {
             ))}
           </div>
         </div>
+
+        {showExpModal && (
+          <div className="modal-overlay">
+            <div className="modal-box">
+              <h3>{editingExp ? "Edit Experience" : "Add Experience"}</h3>
+
+              <input value={role} placeholder="Role" onChange={(e) => setRole(e.target.value)} />
+              <input value={company} placeholder="Company" onChange={(e) => setCompany(e.target.value)} />
+              <textarea value={desc} placeholder="Description" onChange={(e) => setDesc(e.target.value)} />
+
+              <label>Start Date</label>
+              <input type="date" value={startDate} onChange={(e) => setStartDate(e.target.value)} />
+
+              <label>End Date</label>
+              <input type="date" value={endDate} onChange={(e) => setEndDate(e.target.value)} />
+
+              <div className="modal-buttons">
+                {editingExp ? (
+                  <button onClick={handleUpdateExperience}>Update</button>
+                ) : (
+                  <button onClick={handleAddExperience}>Save</button>
+                )}
+
+                <button
+                  onClick={() => {
+                    setShowExpModal(false);
+                    setEditingExp(null);
+                  }}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+
+        <div className="profile-section">
+          <h2>Experience</h2>
+          <button className="add-exp-btn" onClick={() => setShowExpModal(true)}>
+            + Add Experience
+          </button>
+
+          <div className="experience-list">
+            {experiences.map(exp => (
+              <div key={exp.id} className="experience-card">
+                <h3>{exp.role} @ {exp.company}</h3>
+                <p>{exp.description}</p>
+                <p>
+                  {exp.startDate.slice(0, 10)} →{" "}
+                  {exp.endDate ? exp.endDate.slice(0, 10) : "Present"}
+                </p>
+
+                <div className="exp-actions">
+                  <button onClick={() => openEditModal(exp)}>Edit</button>
+                  <button onClick={() => handleDeleteExperience(exp.id)}>Delete</button>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
 
         <div className="profile-section achievements">
           <h2>Recent Achievements</h2>

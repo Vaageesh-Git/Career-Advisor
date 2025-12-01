@@ -22,6 +22,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now())
   recommendation UserRecommendation?
+  experiences Experience[]
 }
 
 model UserRecommendation {
@@ -36,4 +37,16 @@ model UserRecommendation {
   topPicks               Json     
   createdAt              DateTime @default(now())
   updatedAt              DateTime @updatedAt
+}
+
+model Experience {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  role        String
+  company     String
+  description String?  @db.LongText
+  startDate   DateTime
+  endDate     DateTime?
+  createdAt   DateTime @default(now())
 }
