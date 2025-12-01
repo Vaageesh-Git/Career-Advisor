@@ -8,7 +8,6 @@ export async function PATCH(request) {
     const data = await request.json();
     const existingEmail = data.existingEmail
     const updatedEmail = data.updatedEmail
-    console.log(existingEmail)
 
     try{
         const userData = await prisma.user.findUnique({

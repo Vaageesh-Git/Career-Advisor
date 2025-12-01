@@ -1985,6 +1985,11 @@ li {
   border-radius: 10px;
 }
 
+.profile-ctas{
+  display: flex;
+  justify-content: space-between;
+}
+
 .pagination {
   margin-top: 3.5em;
   display: flex;

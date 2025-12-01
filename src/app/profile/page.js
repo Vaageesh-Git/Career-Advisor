@@ -28,6 +28,38 @@ export default function ProfilePage() {
     setEditOpen(!editOpen)
   }
 
+  const handleAccountDelete = async () => {
+    const confirmed = window.confirm("Are you sure you want to delete your account? This action cannot be undone.");
+    if (!confirmed){
+      return;
+    }
+
+    try{
+      const response = await axios.delete('/api/account-delete', {
+        data: { email: user.email }
+      });
+      console.log(response)
+
+      if (response?.status === 200){
+        alert(response.data.message)
+        await axios.post("/api/logout", {}, { withCredentials: true });
+        setLoggedIn(false)
+        setData(null)
+        setAnswers({})
+
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 50);
+
+      }
+
+
+    } catch(err){
+      console.log(err.response)
+      alert("Internal Error")
+    }
+  }
+
   const handleLogout = async () => {
     try {
       await axios.post("/api/logout", {}, { withCredentials: true });
@@ -153,7 +185,11 @@ const handleEmailChnage = async () => {
             <li>📈 Improved problem-solving skills by 40%</li>
           </ul>
         </div>
-      <button onClick={handleLogout} className="signout-cta">Sign Out</button>
+
+        <div className="profile-ctas">
+          <button onClick={handleLogout} className="signout-cta">Sign Out</button>
+          <button className="signout-cta" onClick={handleAccountDelete}>Delete Your Account</button>
+        </div>
       </div>
     </div>
   );
