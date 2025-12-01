@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect,useState } from "react";
-import { Search,LayoutDashboard, GraduationCap, Bot, User } from "lucide-react";
 import JobCard from "@/components/JobCard";
 import ProgressChart from "@/components/ProgressChart";
 import ProgressDashboard from "@/components/ProgressDashboard";
@@ -47,7 +46,7 @@ export default function Dashboard() {
         </div>
 
         <ProgressChart progress={data.progressInsights}/>
-        <TopScholarships scholarships={data.scholarshipMatches}/>
+        <TopScholarships scholarships={data.scholarshipMatches.slice(0,12)}/>
       </div>
       
       <ProgressDashboard insights={data.progressInsights} learningPaths={data.recommendedLearning}/>

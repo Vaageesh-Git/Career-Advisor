@@ -1984,3 +1984,39 @@ li {
   font-weight: bold;
   border-radius: 10px;
 }
+
+.pagination {
+  margin-top: 3.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+}
+
+.pagination button {
+  padding: 8px 16px;
+  background-color: #004aad;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.pagination button:hover:not(:disabled) {
+  background-color: #003580;
+  transform: translateY(-1px);
+}
+
+.pagination button:disabled {
+  background-color: #d3d3d3;
+  color: #777;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 15px;
+  font-weight: 500;
+  color: #333;
+}

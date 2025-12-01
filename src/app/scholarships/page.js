@@ -1,5 +1,5 @@
 "use client";
-import React,{useState} from "react";
+import React,{useEffect, useState} from "react";
 import { Search, Globe, GraduationCap, Star } from "lucide-react";
 import MenuBar from "@/components/MenuBar";
 import { useDataContext } from "../context/aiDataContext";
@@ -10,12 +10,36 @@ export default function ScholarshipsPage() {
   const {data} = useDataContext();
   const [searchInput, setSearchInput] = useState("");
   const [searchResults, setSearchResults] = useState([]);
+  const [scholarships, setScholarships] = useState([]);
+  const [totalPages, setTotalPages] = useState(1);
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+
+  useEffect(() => {
+    async function fetchScholarships() {
+      try {
+        setLoading(true);
+        const res = await axios.post(`/api/scholarships?page=${page}`, {data : data});
+
+        setScholarships(res.data.items);
+        setTotalPages(res.data.totalPages);
+        
+      } catch (error) {
+        console.error("Failed to load scholarships:", error);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchScholarships();
+  }, [page,data]);
+
 
   if (!data) {
     return <Loader/>;
   }
 
-  const scholarships = data.scholarshipMatches || [];
   const topPicks = data.topPicks || [];
 
   const handleSearchInput = (e) => {
@@ -92,6 +116,25 @@ export default function ScholarshipsPage() {
               </div>
             ))}
           </div>
+
+          <div className="pagination">
+            <button 
+              disabled={page === 1}
+              onClick={() => setPage(prev => prev - 1)}
+            >
+              Prev
+            </button>
+
+            <span>Page {page} of {totalPages}</span>
+
+            <button 
+              disabled={page === totalPages}
+              onClick={() => setPage(prev => prev + 1)}
+            >
+              Next
+            </button>
+          </div>
+
         </section>
 
 
