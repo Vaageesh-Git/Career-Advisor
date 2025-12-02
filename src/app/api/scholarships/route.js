@@ -13,7 +13,20 @@ export async function POST(req) {
         const limit = 8;
         const startIndex = (page - 1) * limit;
         const endIndex = startIndex + limit;
-        const paginatedData = scholarships.slice(startIndex, endIndex);
+
+        let paginatedData = scholarships.slice(startIndex, endIndex)
+
+        if (body.filters.alpha){
+            paginatedData = scholarships.slice(startIndex, endIndex).sort((a,b) => {
+                return a.name.localeCompare(b.name);
+            })
+        }
+
+        if (body.filters.country) {
+            paginatedData = scholarships.slice(startIndex, endIndex).sort((a,b) => {
+                return a.country.localeCompare(b.country);
+            })
+        }
 
         return NextResponse.json({
             page,
@@ -21,7 +34,6 @@ export async function POST(req) {
             totalItems: scholarships.length,
             items: paginatedData,
         });
-
 
     } catch(err){
         console.error(err);

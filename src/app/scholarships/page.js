@@ -14,13 +14,17 @@ export default function ScholarshipsPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-
+  const [filters, setFilters] = useState({
+    alpha : false,
+    country : false
+  })
+  const [activeBtn, setActiveBtn] = useState("home");
 
   useEffect(() => {
     async function fetchScholarships() {
       try {
         setLoading(true);
-        const res = await axios.post(`/api/scholarships?page=${page}`, {data : data});
+        const res = await axios.post(`/api/scholarships?page=${page}`, {data : data, filters : filters});
 
         setScholarships(res.data.items);
         setTotalPages(res.data.totalPages);
@@ -33,7 +37,7 @@ export default function ScholarshipsPage() {
     }
 
     fetchScholarships();
-  }, [page,data]);
+  }, [page,data,filters]);
 
 
   if (!data) {
@@ -61,6 +65,21 @@ export default function ScholarshipsPage() {
     }
   };
 
+  const toggleFilter = (key) => {
+    setFilters((prev) => {
+      const newValue = !prev[key];
+
+      return {
+        alpha: false,
+        country: false,
+        [key]: newValue
+      };
+    });
+
+    setActiveBtn((prev) => (prev === key ? "" : key));
+  };
+
+
   return (
     <div className="scholarships-page-main">
       <MenuBar/>
@@ -73,6 +92,22 @@ export default function ScholarshipsPage() {
             <input type="text" placeholder="Search by field, country or name..." onChange={handleSearchInput}/>
             <button onClick={handleSearch}><Search size={20}/></button>
           </div>
+        </section>
+
+        <section className="scholarship-filters">
+          
+          <button
+            onClick={() => toggleFilter("alpha")}
+            className={activeBtn === "alpha" ? "active" : ""}
+          >
+            A to Z
+          </button>
+          <button
+            onClick={() => toggleFilter("country")}
+            className={activeBtn === "country" ? "active" : ""}
+          >
+            Country
+          </button>
         </section>
 
         {

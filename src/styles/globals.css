@@ -2100,3 +2100,22 @@ li {
   background: #d9534f;
   color: white;
 }
+
+.scholarship-filters{
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.scholarship-filters button{
+  background-color: #efefef;
+  color: rgb(0, 0, 0);
+  height: 2.4em;
+  border-radius: 10px;
+  width: 9em;
+}
+
+.scholarship-filters button.active {
+  background: #004aad;
+  color: white;
+}
