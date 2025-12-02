@@ -129,12 +129,12 @@ export default function HomePage() {
       </div>
 
       <div className="homepage-cards-container">
-          {cards.map((i)=>
+          {cards.map((card,idx)=>
             <HomePageCard
-              key={i}
-              title={i.title}
-              description={i.description}
-              imageSrc={i.imageSrc}
+              key={idx}
+              title={card.title}
+              description={card.description}
+              imageSrc={card.imageSrc}
             />)
           }
       </div>
